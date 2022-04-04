@@ -1,0 +1,10 @@
+PROJEKT ZOO
+
+- po spuštění nabídka (nová hra[N], pokračovat ve hře[C], obtížnost[D], exit[Q])
+- nová hra - volba jména...
+- pokračovat ve hře - načtení ze souboru
+- obtížnost - tři úrovně (velikost gridu, množství generování surovin)
+
+
+PRINCIP HRY
+Na začátku určitý počet typů surovin (dřevo, železo, obilí, kamení), z nichž cílem postavit budovu/pole. Každý typ budovy (důl, dům dřevorubce, dům zemědělce, kamenolom) generuje určitý počet daných surovin, z nichž se dají stavět další budovy. Ve hře populace - zvyšuje výrobu surovin, konzumuje obilí. Vylepšování stávajících budov (pak generují více materiálu).
