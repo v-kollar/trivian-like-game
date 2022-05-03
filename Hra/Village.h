@@ -9,6 +9,7 @@
 #include <vector>
 #include <string>
 #include "Building.h"
+#include "ResourceTable.h"
 
 class Village {
     int m_minVillagers; //minimální počet vesničanů na dané kolo

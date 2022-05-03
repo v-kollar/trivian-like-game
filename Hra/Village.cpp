@@ -30,7 +30,7 @@ void Village::checkTile() {
     std::cout << "Zadejte cislo sloupce: " << std::endl;
     std::cin >> col;
     for (int i = 0; i < m_buildings.size(); ++i) {
-        if (m_buildings.at(i)->getLocationRow == row && m_buildings.at(i)->getLocationRow == col ){
+        if (m_buildings.at(i)->Building::getLocationRow() == row && m_buildings.at(i)->Building::getLocationRow() == col ){
             upgrade(m_buildings.at(i));
         }
     }
@@ -50,6 +50,7 @@ void Village::checkTile() {
     if (type == 4){
         typeName = "house";
     }
+    //přidat kontrolu
     addBuilding(typeName,row,col);
 
 }
@@ -59,5 +60,16 @@ void Village::upgrade(Building *building) {
 }
 
 void Village::addBuilding(std::string type, int locationRow, int locationCol) {
+    std::vector<int> temp;
+    temp = ResourceTable::getCostAndMaterial(type);
+    if (m_wood>=temp.at(0) && m_stone>=temp.at(1) && m_iron>=temp.at(2)){
+        m_wood -= temp.at(0);
+        m_stone -= temp.at(1);
+        m_iron -= temp.at(2);
+        m_buildings.push_back(new Building(type,locationRow,locationCol,1));
+    } else{
+        std::cout << "Nemate dostatek surovin" << std::endl;
+    }
+
 
 }
