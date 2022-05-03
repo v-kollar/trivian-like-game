@@ -7,6 +7,7 @@
 
 
 #include <vector>
+#include <string>
 #include "Building.h"
 
 class Village {
@@ -19,12 +20,13 @@ class Village {
     int m_wheat; //počet jednotek suroviny obilí
 public:
     Village(int minVillagers, int numOfVillagers, int wood, int stone, int iron, int wheat); //konstruktor třídy Village
-    void addBuilding(); //přidá novou instanci třídy budovy do pole m_buildings
+    void checkTile();
+    void addBuilding(std::string type, int locationRow, int locationCol); //přidá novou instanci třídy budovy do pole m_buildings
     void upgrade(); //vylepší některou z budov v poli m_buildings
     void setVillagers(int number); //nastaví hodnotu v proměnné m_numOfVillagers
     int getMinVillagers(); //vrátí hodnotu m_minVillagers
     int getNumOfVillagers(); //vratí hodnotu m_numOfVillagers
-    void addNewResources(); //na konci kola přičte nově získáne suroviny k těm stávajícím 
+    void addNewResources(); //na konci kola přičte nově získáne suroviny k těm stávajícím
 
 };
 
