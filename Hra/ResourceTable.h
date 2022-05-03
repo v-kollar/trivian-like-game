@@ -6,8 +6,15 @@
 #define HRA_RESOURCETABLE_H
 
 
-class ResourceTable {
+#include <vector>
+#include <string>
+#include "Building.h"
 
+class ResourceTable {
+    ResourceTable();
+public:
+    static std::vector<int> getCostAndMaterial(std::string type);
+    static int getProducetQty(Building* building);
 };
 
 
