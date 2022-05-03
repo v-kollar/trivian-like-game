@@ -25,33 +25,51 @@ int Village::getNumOfVillagers() {
 void Village::checkTile() {
     int row;
     int col;
-    std::cout << "Zadejte číslo radku: " << std::endl;
+    int index = 0;
+    bool check = false;
+    std::cout << "Zadejte číslo řádku: " << std::endl;
     std::cin >> row;
     std::cout << "Zadejte číslo sloupce: " << std::endl;
     std::cin >> col;
+    while (index != m_buildings.size()) {
+        if (m_buildings.at(index)->Building::getLocationRow() == row && m_buildings.at(index)->Building::getLocationRow() == col ){
+            check = true;
+            break;
+        }
+        index += 1;
+    }
+    if (check){
+        upgrade(m_buildings.at(index));
+    } else{
+        int type;
+        std::string typeName = "";
+        std::cout << "Vyberte typ budovy \n1 = farma\n2 = kamenolom\n3 = dum drevorubce \n4 = obytny dum";
+        std::cin >> type;
+        if (type == 1) {
+            typeName = "farm";
+        }
+        if (type == 2) {
+            typeName = "quarry";
+        }
+        if (type == 3) {
+            typeName = "lumberjackhouse";
+        }
+        if (type == 4) {
+            typeName = "house";
+        } else{
+            addBuilding(typeName,row,col);
+        }
+
+
+
+    }
+    /*
     for (int i = 0; i < m_buildings.size(); ++i) {
         if (m_buildings.at(i)->Building::getLocationRow() == row && m_buildings.at(i)->Building::getLocationRow() == col ){
             upgrade(m_buildings.at(i));
         }
     }
-    int type;
-    std::string typeName;
-    std::cout << "Vyberte typ budovy \n1 = farma\n2 = kamenolom\n3 = dum drevorubce \n4 = obytny dum";
-    std::cin >> type;
-    if (type == 1){
-        typeName = "farm";
-    }
-    if (type == 2){
-        typeName = "quarry";
-    }
-    if (type == 3){
-        typeName = "lumberjackhouse";
-    }
-    if (type == 4){
-        typeName = "house";
-    }
-    //přidat kontrolu
-    addBuilding(typeName,row,col);
+    */
 
 }
 
@@ -93,9 +111,21 @@ void Village::addBuilding(std::string type, int locationRow, int locationCol) {
         //VYŘEŠIT NÁVRAT DO MENU
     }
 
-
 }
 
 void Village::addNewResources() {
-
+    for (int i = 0; i < m_buildings.size(); ++i) {
+        if (m_buildings.at(i)->getType()=="farm") {
+            m_wheat += ResourceTable::getProducetQty(m_buildings.at(i));
+        }
+        if (m_buildings.at(i)->getType()=="quarry") {
+            m_stone += ResourceTable::getProducetQty(m_buildings.at(i));
+        }
+        if (m_buildings.at(i)->getType()=="lumberjackhouse") {
+            m_wood += ResourceTable::getProducetQty(m_buildings.at(i));
+        }
+        if (m_buildings.at(i)->getType()=="house") {
+            m_numOfVillagers += ResourceTable::getProducetQty(m_buildings.at(i));
+        }
+    }
 }
