@@ -3,4 +3,4 @@ project(Hra)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Hra main.cpp Village.cpp Village.h)
+add_executable(Hra main.cpp Village.cpp Village.h Building.cpp Building.h ResourceTable.cpp ResourceTable.h)
