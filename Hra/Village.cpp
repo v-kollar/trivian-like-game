@@ -25,9 +25,9 @@ int Village::getNumOfVillagers() {
 void Village::checkTile() {
     int row;
     int col;
-    std::cout << "Zadejte cislo radku: " << std::endl;
+    std::cout << "Zadejte číslo radku: " << std::endl;
     std::cin >> row;
-    std::cout << "Zadejte cislo sloupce: " << std::endl;
+    std::cout << "Zadejte číslo sloupce: " << std::endl;
     std::cin >> col;
     for (int i = 0; i < m_buildings.size(); ++i) {
         if (m_buildings.at(i)->Building::getLocationRow() == row && m_buildings.at(i)->Building::getLocationRow() == col ){
@@ -56,7 +56,26 @@ void Village::checkTile() {
 }
 
 void Village::upgrade(Building *building) {
-
+    if (building->getType() == "farm"){
+        if (m_iron>0 && m_stone>0 && m_wood>0){
+            building->setLevel(building->getLevel()+1);
+        }
+    }
+    if (building->getType() == "quarry"){
+        if (m_iron>0 && m_stone>0 && m_wood>0){
+            building->setLevel(building->getLevel()+1);
+        }
+    }
+    if (building->getType() == "lumberjackhouse"){
+        if (m_iron>0 && m_stone>0 && m_wood>0){
+            building->setLevel(building->getLevel()+1);
+        }
+    }
+    if (building->getType() == "house"){
+        if (m_iron>0 && m_stone>0 && m_wood>0){
+            building->setLevel(building->getLevel()+1);
+        }
+    }
 }
 
 void Village::addBuilding(std::string type, int locationRow, int locationCol) {
@@ -67,9 +86,16 @@ void Village::addBuilding(std::string type, int locationRow, int locationCol) {
         m_stone -= temp.at(1);
         m_iron -= temp.at(2);
         m_buildings.push_back(new Building(type,locationRow,locationCol,1));
+        std::cout << "Dům postaven" << std::endl;
+        //VYŘEŠIT NÁVRAT DO MENU
     } else{
-        std::cout << "Nemate dostatek surovin" << std::endl;
+        std::cout << "Nemáte dostatek surovin" << std::endl;
+        //VYŘEŠIT NÁVRAT DO MENU
     }
 
+
+}
+
+void Village::addNewResources() {
 
 }
