@@ -6,8 +6,19 @@
 #define HRA_BUILDING_H
 
 
-class Building {
+#include <string>
 
+class Building {
+    std::string m_type;
+    int m_locationRow;
+    int m_locationCol;
+    int m_level;
+public:
+    Building(std::string type, int locationRow, int locationCol, int level);
+    std::string getType();
+    int getLocationRow();
+    int getLocationCol();
+    int getLevel();
 };
 
 
