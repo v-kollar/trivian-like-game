@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <array>
 #include "Village.h"
 
 Village::Village(int minVillagers, int numOfVillagers, int wood, int stone, int iron, int wheat) {
@@ -27,9 +28,9 @@ void Village::checkTile() {
     int col;
     int index = 0;
     bool check = false;
-    std::cout << "Zadejte číslo řádku: " << std::endl;
+    std::cout << "Input row number: " << std::endl;
     std::cin >> row;
-    std::cout << "Zadejte číslo sloupce: " << std::endl;
+    std::cout << "Input column number: " << std::endl;
     std::cin >> col;
     while (index != m_buildings.size()) {
         if (m_buildings.at(index)->Building::getLocationRow() == row && m_buildings.at(index)->Building::getLocationRow() == col ){
@@ -42,8 +43,18 @@ void Village::checkTile() {
         upgrade(m_buildings.at(index));
     } else{
         int type;
+        std::array<std::string , 4> types = {"farm", "quarry", "lumberjackhouse","house"};
         std::string typeName = "";
+        std::cout << "Choose building type\n" << std::endl;
+        for (int i = 0; i < types.size(); ++i) {
+            std::vector<int> temp;
+            temp = ResourceTable::getCostAndMaterial(types.at(i));
+            std::cout << types.at(i) << " - requirements: " << temp.at(0) << " wood, " << temp.at(1) << " stone, " << temp.at(2) << " iron" << std::endl;
+        }
+        /*
         std::cout << "Vyberte typ budovy \n1 = farma\n2 = kamenolom\n3 = dum drevorubce \n4 = obytny dum";
+        */
+
         std::cin >> type;
         if (type == 1) {
             typeName = "farm";
@@ -75,21 +86,21 @@ void Village::checkTile() {
 
 void Village::upgrade(Building *building) {
     if (building->getType() == "farm"){
+        if (m_iron>0 && m_stone>0 && m_wood>0){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
+            building->setLevel(building->getLevel()+1);
+        }
+    }
+    if (building->getType() == "quarry"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
         if (m_iron>0 && m_stone>0 && m_wood>0){
             building->setLevel(building->getLevel()+1);
         }
     }
-    if (building->getType() == "quarry"){
+    if (building->getType() == "lumberjackhouse"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
         if (m_iron>0 && m_stone>0 && m_wood>0){
             building->setLevel(building->getLevel()+1);
         }
     }
-    if (building->getType() == "lumberjackhouse"){
-        if (m_iron>0 && m_stone>0 && m_wood>0){
-            building->setLevel(building->getLevel()+1);
-        }
-    }
-    if (building->getType() == "house"){
+    if (building->getType() == "house"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
         if (m_iron>0 && m_stone>0 && m_wood>0){
             building->setLevel(building->getLevel()+1);
         }
@@ -104,10 +115,10 @@ void Village::addBuilding(std::string type, int locationRow, int locationCol) {
         m_stone -= temp.at(1);
         m_iron -= temp.at(2);
         m_buildings.push_back(new Building(type,locationRow,locationCol,1));
-        std::cout << "Dům postaven" << std::endl;
+        std::cout << "Building finished" << std::endl;
         //VYŘEŠIT NÁVRAT DO MENU
     } else{
-        std::cout << "Nemáte dostatek surovin" << std::endl;
+        std::cout << "You dont have enough resources" << std::endl;
         //VYŘEŠIT NÁVRAT DO MENU
     }
 
