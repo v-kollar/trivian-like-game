@@ -23,12 +23,12 @@ public:
     Village(int minVillagers, int numOfVillagers, int wood, int stone, int iron, int wheat); //konstruktor třídy Village
     void checkTile(); //zkontroluje zda některá budova již nestojí na zadané souřadnici
     void addBuilding(std::string type, int locationRow, int locationCol); //přidá novou instanci třídy budovy do pole m_buildings
-    void upgrade(Building* building); //vylepší některou z budov v poli m_buildings
+    void upgrade(Building* building) const; //vylepší některou z budov v poli m_buildings
     void setVillagers(int number); //nastaví hodnotu v proměnné m_numOfVillagers
-    int getMinVillagers(); //vrátí hodnotu m_minVillagers
-    int getNumOfVillagers(); //vratí hodnotu m_numOfVillagers
+    int getMinVillagers() const; //vrátí hodnotu m_minVillagers
+    int getNumOfVillagers() const; //vratí hodnotu m_numOfVillagers
     void addNewResources(); //na konci kola přičte nově získáne suroviny k těm stávajícím
-    void printResources();
+    void printResources() const;
     void feedVillagers();
 
 };
