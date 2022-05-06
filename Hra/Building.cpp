@@ -26,3 +26,7 @@ int Building::getLocationCol() {
 int Building::getLevel() {
     return m_level;
 }
+
+void Building::setLevel() {
+    m_level += 1;
+}
