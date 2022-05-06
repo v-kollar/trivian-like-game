@@ -58,19 +58,21 @@ void Village::checkTile() {
         */
 
         std::cin >> type;
-        if (type == 1) {
-            typeName = "farm";
-        }
-        if (type == 2) {
-            typeName = "quarry";
-        }
-        if (type == 3) {
-            typeName = "lumberjackhouse";
-        }
-        if (type == 4) {
-            typeName = "house";
-        } else {
-            addBuilding(typeName,row,col);
+        switch (type) {
+            case 1:
+                typeName = "farm";
+                break;
+            case 2:
+                typeName = "quarry";
+                break;
+            case 3:
+                typeName = "lumberjackhouse";
+                break;
+            case 4:
+                typeName = "house";
+                break;
+            default:
+                addBuilding(typeName, row, col);
         }
     }
     /*
