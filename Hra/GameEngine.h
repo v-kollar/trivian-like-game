@@ -4,19 +4,19 @@
 #include "Village.h"
 
 class GameEngine {
-    int m_difficulty{};
-    Village* m_village{};
+    int m_difficulty;
+    Village* m_village;
 
 public:
     GameEngine();
     void setup();
-    void setDifficulty(int difficulty);
     int getDifficulty() const;
     static void printIntro();
     static void printOutro();
     void printMap();  // to be added
     void play();
     void endRound();
+    ~GameEngine();
 };
 
 #endif //ZOO_PROJECT_GAMEENGINE_H

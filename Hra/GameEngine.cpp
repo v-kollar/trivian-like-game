@@ -6,16 +6,13 @@ GameEngine::GameEngine() {
     GameEngine::printIntro();
 
     std::cout << "Enter a difficulty: "; std::cin >> m_difficulty;
+    m_village = new Village( m_difficulty * 5, (m_difficulty * 5 + 2), 5, 5, 5, 5 );
 
-    m_village = new Village( m_difficulty * 5, 1, 5, 5, 5, 5 );
+    GameEngine::play();
 }
 
 void GameEngine::setup() {
     // sets up the beginning of round?
-}
-
-void GameEngine::setDifficulty(int difficulty) {
-    m_difficulty = difficulty;
 }
 
 int GameEngine::getDifficulty() const {
@@ -40,12 +37,32 @@ void GameEngine::printMap() {
 }
 
 void GameEngine::play() {
-// ?
-//    while (m_village->getNumOfVillagers() >= m_village->getMinVillagers()) {
-//
-//    }
+    while (m_village->getNumOfVillagers() >= m_village->getMinVillagers()) {
+        int choice = 0;
+        GameEngine::printMap();
+        m_village->printResources();
+
+        std::cout << "(1) end round \n"
+        << "(2) play \n";
+        std::cin >> choice;
+
+        while (choice == 2) {
+            m_village->checkTile();
+            std::cout << "(1) end round \n"
+                      << "(2) play \n";
+            std::cin >> choice;
+        }
+
+        m_village->feedVillagers();
+        m_village->addNewResources();
+    }
+    GameEngine::~GameEngine();
 }
 
 void GameEngine::endRound() {
     // indicates, that round has ended
+}
+
+GameEngine::~GameEngine() {
+    GameEngine::printOutro();
 }
