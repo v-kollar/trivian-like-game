@@ -1,13 +1,17 @@
 #include <iostream>
+#include <cassert>
 #include "GameEngine.h"
 #include "Village.h"
 
 GameEngine::GameEngine() {
     GameEngine::printIntro();
 
-    std::cout << "Enter a difficulty: "; std::cin >> m_difficulty;
-    m_village = new Village( m_difficulty * 5, (m_difficulty * 5 + 2), 5, 5, 5, 5 );
+    std::cout << ">";
+    std::cin >> m_difficulty;
+    assert(m_difficulty >= 1 and m_difficulty <= 3);
 
+    m_village = new Village( m_difficulty * 5, (m_difficulty * 5 + 2),
+                             5, 5, 5, 5 );
     GameEngine::play();
 }
 
@@ -20,11 +24,14 @@ int GameEngine::getDifficulty() const {
 }
 
 void GameEngine::printIntro() {
-    std::cout << "Basic info about the game...\n"
-              << "Select difficulty:\n"
-              << "(1) easy\n"
-              << "(2) medium\n"
-              << "(3) hard\n\n";
+    std::cout << "\nWelcome player! This game is being made as school project\n"
+                 "for course Basics of Object Design. Your goal is to build\n"
+                 "and upgrade as many buildings as possible without lossing\n"
+                 "all your resources.\n"
+                 "-------------------------------------------------------------\n"
+                 "Map size is determined by the selected difficulty.\n" // sizes of each difficulties
+                 "First, type the number of desired difficulty:\n"
+                 "(1) easy\t(2) medium\t(3) hard\n\n";
 }
 
 void GameEngine::printOutro() {
@@ -32,8 +39,8 @@ void GameEngine::printOutro() {
 }
 
 void GameEngine::printMap() {
-    std::cout << "Here is a map: \n";
-    // prints a map
+    std::cout << "This is what the world map looks like at the moment: \n"
+              << "### here player will see an epic map ###\n\n";  // prints a map
 }
 
 void GameEngine::play() {
@@ -43,7 +50,8 @@ void GameEngine::play() {
         m_village->printResources();
 
         std::cout << "(1) end round \n"
-        << "(2) play \n";
+                  << "(2) play \n";
+
         std::cin >> choice;
 
         while (choice == 2) {
@@ -52,7 +60,6 @@ void GameEngine::play() {
                       << "(2) play \n";
             std::cin >> choice;
         }
-
         m_village->feedVillagers();
         m_village->addNewResources();
     }
