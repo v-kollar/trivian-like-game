@@ -140,3 +140,17 @@ void Village::addNewResources() {
         }
     }
 }
+
+void Village::printResources() {
+    std::cout << "Available resources: " <<
+    "Wood: " << m_wood <<
+    "Stone: " << m_stone <<
+    "Iron: " << m_iron <<
+    "Wheat: " << m_wheat << std::endl << std::endl;
+}
+
+void Village::feedVillagers() {
+    if (m_numOfVillagers * 4 > m_wheat) {
+        m_wheat -= m_numOfVillagers * 4;
+    }
+}
