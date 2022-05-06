@@ -13,7 +13,6 @@ public:
     void setDifficulty(int difficulty);
     int getDifficulty() const;
     static void printIntro();
-    static void printInfo();
     static void printOutro();
     void printMap();  // to be added
     void play();

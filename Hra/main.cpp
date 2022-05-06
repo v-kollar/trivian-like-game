@@ -1,6 +1,10 @@
 #include <iostream>
 
+#include "GameEngine.h"
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    auto* enzin = new GameEngine();
+
+
     return 0;
 }

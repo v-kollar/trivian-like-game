@@ -1,7 +1,14 @@
 #include <iostream>
 #include "GameEngine.h"
+#include "Village.h"
 
-GameEngine::GameEngine() = default;
+GameEngine::GameEngine() {
+    GameEngine::printIntro();
+
+    std::cout << "Enter a difficulty: "; std::cin >> m_difficulty;
+
+    m_village = new Village( m_difficulty * 5, 1, 5, 5, 5, 5 );
+}
 
 void GameEngine::setup() {
     // sets up the beginning of round?
@@ -16,11 +23,11 @@ int GameEngine::getDifficulty() const {
 }
 
 void GameEngine::printIntro() {
-    std::cout << "Some epic intro...\n";
-}
-
-void GameEngine::printInfo() {
-    std::cout << "Info about the game...\n";
+    std::cout << "Basic info about the game...\n"
+              << "Select difficulty:\n"
+              << "(1) easy\n"
+              << "(2) medium\n"
+              << "(3) hard\n\n";
 }
 
 void GameEngine::printOutro() {
@@ -28,11 +35,15 @@ void GameEngine::printOutro() {
 }
 
 void GameEngine::printMap() {
+    std::cout << "Here is a map: \n";
     // prints a map
 }
 
 void GameEngine::play() {
-    // ?
+// ?
+//    while (m_village->getNumOfVillagers() >= m_village->getMinVillagers()) {
+//
+//    }
 }
 
 void GameEngine::endRound() {
