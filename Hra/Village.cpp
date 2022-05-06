@@ -87,22 +87,22 @@ void Village::checkTile() {
 void Village::upgrade(Building *building) {
     if (building->getType() == "farm"){
         if (m_iron>0 && m_stone>0 && m_wood>0){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
-            building->setLevel(building->getLevel()+1);
+            building->setLevel();
         }
     }
     if (building->getType() == "quarry"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
         if (m_iron>0 && m_stone>0 && m_wood>0){
-            building->setLevel(building->getLevel()+1);
+            building->setLevel();
         }
     }
     if (building->getType() == "lumberjackhouse"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
         if (m_iron>0 && m_stone>0 && m_wood>0){
-            building->setLevel(building->getLevel()+1);
+            building->setLevel();
         }
     }
     if (building->getType() == "house"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
         if (m_iron>0 && m_stone>0 && m_wood>0){
-            building->setLevel(building->getLevel()+1);
+            building->setLevel();
         }
     }
 }
