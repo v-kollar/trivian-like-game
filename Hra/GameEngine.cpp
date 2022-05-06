@@ -4,11 +4,11 @@
 GameEngine::GameEngine() = default;
 
 void GameEngine::setup() {
-
+    // sets up the beginning of round?
 }
 
 void GameEngine::setDifficulty(int difficulty) {
-
+    m_difficulty = difficulty;
 }
 
 int GameEngine::getDifficulty() const {
