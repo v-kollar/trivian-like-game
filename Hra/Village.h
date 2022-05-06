@@ -28,6 +28,8 @@ public:
     int getMinVillagers(); //vrátí hodnotu m_minVillagers
     int getNumOfVillagers(); //vratí hodnotu m_numOfVillagers
     void addNewResources(); //na konci kola přičte nově získáne suroviny k těm stávajícím
+    void printResources();
+    void feedVillagers();
 
 };
 
