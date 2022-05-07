@@ -46,9 +46,9 @@ void Village::checkTile() {
         int type;
         std::array<std::string, 4> types = {"farm", "quarry", "lumberjackhouse","house"};
         std::string typeName = "";
-        std::cout << "Choose building type:\n" << std::endl;
+
         for (int i = 0; i < types.size(); ++i) {
-            std::vector<int> temp;
+            std::array<int,3> temp;
             temp = ResourceTable::getCostAndMaterial(types.at(i));
             std::cout << types.at(i) << " - requirements: " << temp.at(0) << " wood, " << temp.at(1)
                                         << " stone, " << temp.at(2) << " iron" << std::endl;
@@ -56,7 +56,7 @@ void Village::checkTile() {
         /*
         std::cout << "Vyberte typ budovy \n1 = farma\n2 = kamenolom\n3 = dum drevorubce \n4 = obytny dum";
         */
-
+        std::cout << "Choose building type:\n" << std::endl;
         std::cin >> type;
         switch (type) {
             case 1:
@@ -108,7 +108,7 @@ void Village::upgrade(Building* building) const {
 }
 
 void Village::addBuilding(std::string type, int locationRow, int locationCol) {
-    std::vector<int> temp;
+    std::array<int,3> temp;
     temp = ResourceTable::getCostAndMaterial(type);
     if (m_wood>=temp.at(0) and m_stone>=temp.at(1) and m_iron >= temp.at(2)){
         m_wood -= temp.at(0);
