@@ -11,7 +11,7 @@ GameEngine::GameEngine() {
     assert(m_difficulty >= 1 and m_difficulty <= 3);
 
     m_village = new Village( m_difficulty * 5, (m_difficulty * 5 + 2),
-                             5, 5, 5, 5 );
+                             15, 5, 5, 5 );
     GameEngine::play();
 }
 

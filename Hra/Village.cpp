@@ -34,7 +34,7 @@ void Village::checkTile() {
     std::cin >> col;
     while (index != m_buildings.size()) {
         if (m_buildings.at(index)->Building::getLocationRow() == row
-        and m_buildings.at(index)->Building::getLocationRow() == col){
+        and m_buildings.at(index)->Building::getLocationCol() == col){
             isChecked = true;
             break;
         }
@@ -58,22 +58,20 @@ void Village::checkTile() {
         */
         std::cout << "Choose building type:\n" << std::endl;
         std::cin >> type;
-        switch (type) {
-            case 1:
-                typeName = "farm";
-                break;
-            case 2:
-                typeName = "quarry";
-                break;
-            case 3:
-                typeName = "lumberjackhouse";
-                break;
-            case 4:
-                typeName = "house";
-                break;
-            default:
-                addBuilding(typeName, row, col);
+        if (type == 1){
+            typeName = "farm";
         }
+        if (type == 2){
+            typeName = "quarry";
+        }
+        if (type == 3){
+            typeName = "lumberjackhouse";
+        }
+        if (type == 4){
+            typeName = "house";
+        }
+        addBuilding(typeName, row, col);
+
     }
     /*
     for (int i = 0; i < m_buildings.size(); ++i) {
@@ -84,25 +82,53 @@ void Village::checkTile() {
     */
 }
 
-void Village::upgrade(Building* building) const {
-    if (building->getType() == "farm"){
-        if (m_iron > 0 and m_stone > 0 and m_wood > 0){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
+void Village::upgrade(Building* building){
+  std::cout << "stone: " << m_stone << std::endl;
+   std::cout << "iron: " << m_iron << std::endl;
+   std::cout << "wood: " << m_wood << std::endl;
+    if (building->getType() == "farm" ){
+        if (m_iron > 0 and m_stone > 0 and m_wood > 0){
+            m_iron -= 0;
+            m_stone -= 0;
+            m_wood -= 0;
             building->setLevel();
+            std::cout << "Upgrade finished\n";
+        } else{
+            std::cout << "Upgrade FAILED\n";
         }
     }
-    if (building->getType() == "quarry"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
+    if (building->getType() == "quarry"){
         if (m_iron > 0 and m_stone > 0 and m_wood > 0){
+            m_iron -= 0;
+            m_stone -= 0;
+            m_wood -= 0;
             building->setLevel();
+            std::cout << "Upgrade finished\n";
+        } else {
+            std::cout << "Upgrade FAILED\n";
         }
+
     }
     if (building->getType() == "lumberjackhouse"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
         if (m_iron > 0 and m_stone > 0 and m_wood > 0){
+            m_iron -= 0;
+            m_stone -= 0;
+            m_wood -= 0;
             building->setLevel();
+            std::cout << "Upgrade finished\n";
+        } else {
+            std::cout << "Upgrade FAILED\n";
         }
     }
     if (building->getType() == "house"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
-        if (m_iron > 0 and m_stone > 0 and m_wood > 0){
+        if (m_iron > 0 and m_stone > 0 and m_wood > 0) {
+            m_iron -= 0;
+            m_stone -= 0;
+            m_wood -= 0;
             building->setLevel();
+            std::cout << "Upgrade finished\n";
+        } else {
+            std::cout << "Upgrade FAILED\n";
         }
     }
 }
