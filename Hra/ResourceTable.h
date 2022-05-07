@@ -8,12 +8,13 @@
 
 #include <vector>
 #include <string>
+#include <array>
 #include "Building.h"
 
 class ResourceTable {
     ResourceTable();
 public:
-    static std::vector<int> getCostAndMaterial(std::string type);
+    static std::array<int, 3> getCostAndMaterial(std::string type);
     static int getProducetQty(Building* building);
 };
 

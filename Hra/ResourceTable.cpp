@@ -9,30 +9,30 @@ ResourceTable::ResourceTable() {
     //instance nebudou existovat
 }
 
-std::vector<int> ResourceTable::getCostAndMaterial(std::string type) {
+std::array<int, 3> ResourceTable::getCostAndMaterial(std::string type) {
     if (type == "house") {
-        std::vector<int> temp;
+        std::array<int, 3> temp;
         temp.at(0) = 5;
         temp.at(1) = 5;
         temp.at(2) = 2;
         return temp;
 
     } else if (type == "quarry") {
-        std::vector<int> temp;
+        std::array<int, 3> temp;
         temp.at(0) = 2;
         temp.at(1) = 4;
         temp.at(2) = 5;
         return temp;
 
     } else if (type == "lumberjackhouse") {
-        std::vector<int> temp;
+        std::array<int, 3> temp;
         temp.at(0) = 5;
         temp.at(1) = 5;
         temp.at(2) = 2;
         return temp;
 
     } else if (type == "farm") {
-        std::vector<int> temp;
+        std::array<int, 3> temp;
         temp.at(0) = 5;
         temp.at(1) = 3;
         temp.at(2) = 2;
@@ -40,7 +40,7 @@ std::vector<int> ResourceTable::getCostAndMaterial(std::string type) {
 
     } else {
         std::cerr << "Error -1: It is not possible to create other than the defined building types. Please contact the APP developers." << std::endl;
-        return std::vector<int>();
+        return std::array<int, 3>();
     }
 }
 
