@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <array>
+#include <cassert>
 #include "Village.h"
 
 Village::Village(int minVillagers, int numOfVillagers,
@@ -57,25 +58,29 @@ void Village::checkTile() {
                                      << " stone, " << temp.at(2) << " iron\n";
         }
         /*
-        std::cout << "Vyberte typ budovy \n1 = farma
+        std::cout << "Vyberte ty    p budovy \n1 = farma
          \n2 = kamenolom\n3 = dum drevorubce \n4 = obytny dum";
         */
-        std::cout << "Choose building type:\n";
         std::cin >> type;
-        if (type == 1){
-            typeName = "farm";
-        }
-        if (type == 2){
-            typeName = "quarry";
-        }
-        if (type == 3){
-            typeName = "lumberjackhouse";
-        }
-        if (type == 4){
-            typeName = "house";
+        assert(typeid(type) == typeid(std::string));
+        switch (type) {
+            case 1:
+                typeName = "farm";
+                break;
+            case 2:
+                typeName = "quarry";
+                break;
+            case 3:
+                typeName = "lumberjackhouse";
+                break;
+            case 4:
+                typeName = "house";
+                break;
+            default:
+                // everything not in range 1 to 4 goes here
+                break;
         }
         addBuilding(typeName, row, col);
-
     }
     /*
     for (int i = 0; i < m_buildings.size(); ++i) {
