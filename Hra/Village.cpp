@@ -48,15 +48,15 @@ void Village::checkTile() {
         std::string typeName = "";
 
         for (int i = 0; i < types.size(); ++i) {
-            std::array<int,3> temp;
+            std::array<int, 3> temp;
             temp = ResourceTable::getCostAndMaterial(types.at(i));
             std::cout << types.at(i) << " - requirements: " << temp.at(0) << " wood, " << temp.at(1)
-                                        << " stone, " << temp.at(2) << " iron" << std::endl;
+                                        << " stone, " << temp.at(2) << " iron\n";
         }
         /*
         std::cout << "Vyberte typ budovy \n1 = farma\n2 = kamenolom\n3 = dum drevorubce \n4 = obytny dum";
         */
-        std::cout << "Choose building type:\n" << std::endl;
+        std::cout << "Choose building type:\n";
         std::cin >> type;
         if (type == 1){
             typeName = "farm";
@@ -83,18 +83,18 @@ void Village::checkTile() {
 }
 
 void Village::upgrade(Building* building){
-  std::cout << "stone: " << m_stone << std::endl;
-   std::cout << "iron: " << m_iron << std::endl;
-   std::cout << "wood: " << m_wood << std::endl;
+   std::cout << "stone: " << m_stone << "\n";
+   std::cout << "iron: " << m_iron << "\n";
+   std::cout << "wood: " << m_wood << "\n";
     if (building->getType() == "farm" ){
         if (m_iron > 0 and m_stone > 0 and m_wood > 0){
             m_iron -= 0;
             m_stone -= 0;
             m_wood -= 0;
-            building->setLevel();
+            building->levelUp();
             std::cout << "Upgrade finished\n";
         } else{
-            std::cout << "Upgrade FAILED\n";
+            std::cerr << "Upgrade FAILED\n";
         }
     }
     if (building->getType() == "quarry"){
@@ -102,10 +102,10 @@ void Village::upgrade(Building* building){
             m_iron -= 0;
             m_stone -= 0;
             m_wood -= 0;
-            building->setLevel();
+            building->levelUp();
             std::cout << "Upgrade finished\n";
         } else {
-            std::cout << "Upgrade FAILED\n";
+            std::cerr << "Upgrade FAILED\n";
         }
 
     }
@@ -114,10 +114,10 @@ void Village::upgrade(Building* building){
             m_iron -= 0;
             m_stone -= 0;
             m_wood -= 0;
-            building->setLevel();
+            building->levelUp();
             std::cout << "Upgrade finished\n";
         } else {
-            std::cout << "Upgrade FAILED\n";
+            std::cerr << "Upgrade FAILED\n";
         }
     }
     if (building->getType() == "house"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
@@ -125,10 +125,10 @@ void Village::upgrade(Building* building){
             m_iron -= 0;
             m_stone -= 0;
             m_wood -= 0;
-            building->setLevel();
+            building->levelUp();
             std::cout << "Upgrade finished\n";
         } else {
-            std::cout << "Upgrade FAILED\n";
+            std::cerr << "Upgrade FAILED\n";
         }
     }
 }
@@ -175,7 +175,7 @@ void Village::printResources() const {
 void Village::feedVillagers() {
     std::cout << "wheat " << m_wheat;
     int requiredFood = 0;
-    std::cout << m_numOfVillagers << std::endl;
+    std::cout << m_numOfVillagers << "\n";
     for (int i = 0; i < m_buildings.size(); ++i) {
         if (m_buildings.at(i)->getType() == "house"){
             requiredFood += ResourceTable::getProducetQty(m_buildings.at(i));
