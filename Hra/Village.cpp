@@ -6,7 +6,8 @@
 #include <array>
 #include "Village.h"
 
-Village::Village(int minVillagers, int numOfVillagers, int wood, int stone, int iron, int wheat) {
+Village::Village(int minVillagers, int numOfVillagers,
+                 int wood, int stone, int iron, int wheat) {
     m_minVillagers = minVillagers;
     m_numOfVillagers = numOfVillagers;
     m_wood = wood;
@@ -44,17 +45,20 @@ void Village::checkTile() {
         upgrade(m_buildings.at(index));
     } else {
         int type;
-        std::array<std::string, 4> types = {"farm", "quarry", "lumberjackhouse","house"};
+        std::array<std::string, 4> types = {"farm", "quarry",
+                                            "lumberjackhouse","house"};
         std::string typeName = "";
 
         for (int i = 0; i < types.size(); ++i) {
             std::array<int, 3> temp;
             temp = ResourceTable::getCostAndMaterial(types.at(i));
-            std::cout << types.at(i) << " - requirements: " << temp.at(0) << " wood, " << temp.at(1)
-                                        << " stone, " << temp.at(2) << " iron\n";
+            std::cout << types.at(i) << " - requirements: " << temp.at(0)
+                                     << " wood, " << temp.at(1)
+                                     << " stone, " << temp.at(2) << " iron\n";
         }
         /*
-        std::cout << "Vyberte typ budovy \n1 = farma\n2 = kamenolom\n3 = dum drevorubce \n4 = obytny dum";
+        std::cout << "Vyberte typ budovy \n1 = farma
+         \n2 = kamenolom\n3 = dum drevorubce \n4 = obytny dum";
         */
         std::cout << "Choose building type:\n";
         std::cin >> type;
@@ -75,7 +79,8 @@ void Village::checkTile() {
     }
     /*
     for (int i = 0; i < m_buildings.size(); ++i) {
-        if (m_buildings.at(i)->Building::getLocationRow() == row && m_buildings.at(i)->Building::getLocationRow() == col ){
+        if (m_buildings.at(i)->Building::getLocationRow() == row
+        && m_buildings.at(i)->Building::getLocationRow() == col ){
             upgrade(m_buildings.at(i));
         }
     }
@@ -169,7 +174,8 @@ void Village::addNewResources() {
 
 void Village::printResources() const {
     std::cout << "Available resources: \n"
-    << m_wood << "x wood, " << m_stone << "x stone, " << m_iron << "x iron, " << m_wheat << "x wheat.\n\n";
+    << m_wood << "x wood, " << m_stone << "x stone, "
+    << m_iron << "x iron, " << m_wheat << "x wheat.\n\n";
 }
 
 void Village::feedVillagers() {
