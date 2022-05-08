@@ -19,7 +19,7 @@ public:
     int getLocationRow();
     int getLocationCol();
     int getLevel();
-    void setLevel();
+    void levelUp();
 };
 
 

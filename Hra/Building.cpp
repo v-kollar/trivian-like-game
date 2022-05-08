@@ -1,7 +1,3 @@
-//
-// Created by User on 03.05.2022.
-//
-
 #include "Building.h"
 
 Building::Building(std::string type, int locationRow, int locationCol, int level) {
@@ -27,6 +23,6 @@ int Building::getLevel() {
     return m_level;
 }
 
-void Building::setLevel() {
+void Building::levelUp() {
     m_level += 1;
 }
