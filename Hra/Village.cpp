@@ -142,10 +142,8 @@ void Village::addBuilding(std::string type, int locationRow, int locationCol) {
         m_iron -= temp.at(2);
         m_buildings.push_back(new Building(type, locationRow, locationCol,1));
         std::cout << "Building finished\n";
-        //VYŘEŠIT NÁVRAT DO MENU
     } else {
         std::cerr << "You don't have enough resources!\n";
-        //VYŘEŠIT NÁVRAT DO MENU
     }
 
 }
@@ -161,9 +159,11 @@ void Village::addNewResources() {
         if (m_buildings.at(i)->getType() == "lumberjackhouse") {
             m_wood += ResourceTable::getProducetQty(m_buildings.at(i));
         }
+        /*
         if (m_buildings.at(i)->getType() == "house") {
             m_numOfVillagers += ResourceTable::getProducetQty(m_buildings.at(i));
         }
+        */
     }
 }
 
@@ -173,7 +173,19 @@ void Village::printResources() const {
 }
 
 void Village::feedVillagers() {
-    if (m_numOfVillagers * 4 > m_wheat) {
-        m_wheat -= m_numOfVillagers * 4;
+    std::cout << "wheat " << m_wheat;
+    int requiredFood = 0;
+    std::cout << m_numOfVillagers << std::endl;
+    for (int i = 0; i < m_buildings.size(); ++i) {
+        if (m_buildings.at(i)->getType() == "house"){
+            requiredFood += ResourceTable::getProducetQty(m_buildings.at(i));
+        }
+    }
+    if (m_numOfVillagers + requiredFood < m_wheat){
+        m_numOfVillagers += requiredFood;
+        m_wheat -= m_numOfVillagers + requiredFood;
+    } else {
+        m_numOfVillagers = m_wheat;
+        m_wheat = 0;
     }
 }
