@@ -8,8 +8,9 @@
 #include "Village.h"
 #include "GameEngine.h"
 
-Village::Village(int minVillagers, int numOfVillagers,
+Village::Village(int difficulty, int minVillagers, int numOfVillagers,
                  int wood, int stone, int iron, int wheat) {
+    m_difficulty = difficulty;
     m_minVillagers = minVillagers;
     m_numOfVillagers = numOfVillagers;
     m_wood = wood;
@@ -17,6 +18,10 @@ Village::Village(int minVillagers, int numOfVillagers,
     m_iron = iron;
     m_wheat = wheat;
     m_map = new Map(6,6); //vyřešit mapu závislou na obtížnosti
+}
+
+int Village::getDifficulty() {
+    return m_difficulty;
 }
 
 int Village::getMinVillagers() const {

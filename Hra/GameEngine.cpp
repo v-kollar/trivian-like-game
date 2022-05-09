@@ -4,13 +4,14 @@
 #include "Village.h"
 
 GameEngine::GameEngine() {
-    m_difficulty = 0;
+    int SelectedDifficulty;
+    SelectedDifficulty = 0;
     GameEngine::printIntro();
     std::cout << ">";
-    std::cin >> m_difficulty;
-    assert(m_difficulty >= 1 and m_difficulty <= 3);
+    std::cin >> SelectedDifficulty;
+    assert(SelectedDifficulty >= 1 and SelectedDifficulty <= 3);
 
-    m_village = new Village( m_difficulty * 5, (m_difficulty * 5 + 2),
+    m_village = new Village(SelectedDifficulty, SelectedDifficulty * 5, (SelectedDifficulty * 5 + 2),
                              15, 5, 5, 5 );
     GameEngine::play();
 }
@@ -19,9 +20,6 @@ void GameEngine::setup() {
     // sets up the beginning of round?
 }
 
-int GameEngine::getDifficulty() const {
-    return m_difficulty;
-}
 
 void GameEngine::printIntro() {
     std::cout << "\nWelcome player! This game is being made as school project\n"

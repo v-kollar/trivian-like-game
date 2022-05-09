@@ -12,6 +12,7 @@
 #include "ResourceTable.h"
 #include "Map.h"
 class Village {
+    int m_difficulty;
     int m_minVillagers; //minimální počet vesničanů na dané kolo
     int m_numOfVillagers; //aktuální stav vesničanů pro toto kolo
     std::vector<Building*> m_buildings;
@@ -21,7 +22,8 @@ class Village {
     int m_wheat; //počet jednotek suroviny obilí
     Map* m_map; //ukazatel na instanci třídy map
 public:
-    Village(int minVillagers, int numOfVillagers, int wood, int stone, int iron, int wheat); //konstruktor třídy Village
+    Village(int difficulty, int minVillagers, int numOfVillagers, int wood, int stone, int iron, int wheat); //konstruktor třídy Village
+    int getDifficulty();
     void checkTile(); //zkontroluje zda některá budova již nestojí na zadané souřadnici
     void addBuilding(std::string type, int locationRow, int locationCol); //přidá novou instanci třídy budovy do pole m_buildings
     void upgrade(Building* building); //vylepší některou z budov v poli m_buildings

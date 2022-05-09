@@ -4,13 +4,11 @@
 #include "Village.h"
 
 class GameEngine {
-    int m_difficulty;
     Village* m_village;
 
 public:
     GameEngine();
     void setup();
-    int getDifficulty() const;
     static void printIntro();
     static void printOutro();
     void printMap();  // to be added
