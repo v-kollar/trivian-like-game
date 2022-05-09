@@ -3,7 +3,9 @@
 #include "GameEngine.h"
 #include "Village.h"
 
-GameEngine::GameEngine() {
+GameEngine::GameEngine(int difficulty) {
+    m_difficulty = difficulty;
+
     GameEngine::printIntro();
 
     std::cout << ">";
@@ -71,5 +73,6 @@ void GameEngine::endRound() {
 }
 
 GameEngine::~GameEngine() {
+    delete m_village;
     GameEngine::printOutro();
 }
