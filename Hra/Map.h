@@ -6,15 +6,25 @@
 #include "Tile.h"
 
 class Map {
-    std::vector<std::vector<Tile*>> m_map;
+    std::vector<std::vector<Tile *>> m_map;
+    static inline Tile* s_instanceFarm = new Tile("F");
+    static inline Tile* s_instanceQuarry = new Tile("Q");
+    static inline Tile* s_instanceLumberjackhouse = new Tile("L");
+    static inline Tile* s_instanceHouse = new Tile("H");
     static bool isNonZero(unsigned int width, unsigned int height);
+
     bool isOnMap(unsigned int row, unsigned int col);
+
 public:
     Map(unsigned int width, unsigned int height);
-    Tile* getValue(unsigned int row, unsigned int col);
-    void setValue(unsigned int row, unsigned int col, Tile* value);
-    void setAppearance(unsigned row, unsigned col, std::string appearance);
+
+    Tile *getValue(unsigned int row, unsigned int col);
+
+    void setValue(unsigned int row, unsigned int col, Tile *value);
+
+    //void setAppearance(unsigned row, unsigned col, std::string appearance);
     void show();
+    static Tile* getType(std::string type);
 };
 
 #endif //HRA_MAP_H
