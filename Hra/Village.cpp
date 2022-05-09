@@ -15,6 +15,7 @@ Village::Village(int minVillagers, int numOfVillagers,
     m_stone = stone;
     m_iron = iron;
     m_wheat = wheat;
+    m_map = new Map(6,6);
 }
 
 int Village::getMinVillagers() const {
@@ -62,7 +63,7 @@ void Village::checkTile() {
          \n2 = kamenolom\n3 = dum drevorubce \n4 = obytny dum";
         */
         std::cin >> type;
-        assert(typeid(type) == typeid(std::string));
+        assert(typeid(type) == typeid(int));
         switch (type) {
             case 1:
                 typeName = "farm";
@@ -152,6 +153,18 @@ void Village::addBuilding(std::string type, int locationRow, int locationCol) {
         m_iron -= temp.at(2);
         m_buildings.push_back(new Building(type, locationRow, locationCol,1));
         std::cout << "Building finished\n";
+        if (type == "farm"){
+            m_map->setValue(locationRow,locationCol,Map::s_instanceFarm);
+        }
+        if (type == "quarry"){
+            m_map->setValue(locationRow,locationCol,Map::s_instanceQuarry);
+        }
+        if (type == "lumberjackhouse"){
+            m_map->setValue(locationRow,locationCol,Map::s_instanceLumberjackhouse);
+        }
+        if (type == "house") {
+            m_map->setValue(locationRow,locationCol,Map::s_instanceHouse);
+        }
     } else {
         std::cerr << "You don't have enough resources!\n";
     }
@@ -184,7 +197,6 @@ void Village::printResources() const {
 }
 
 void Village::feedVillagers() {
-    std::cout << "wheat " << m_wheat;
     int requiredFood = 0;
     std::cout << m_numOfVillagers << "\n";
     for (int i = 0; i < m_buildings.size(); ++i) {
@@ -199,4 +211,8 @@ void Village::feedVillagers() {
         m_numOfVillagers = m_wheat;
         m_wheat = 0;
     }
+}
+
+void Village::printMap() {
+    m_map->show();
 }

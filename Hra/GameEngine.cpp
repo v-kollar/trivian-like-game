@@ -3,11 +3,9 @@
 #include "GameEngine.h"
 #include "Village.h"
 
-GameEngine::GameEngine(int difficulty) {
-    m_difficulty = difficulty;
-
+GameEngine::GameEngine() {
+    m_difficulty = 0;
     GameEngine::printIntro();
-
     std::cout << ">";
     std::cin >> m_difficulty;
     assert(m_difficulty >= 1 and m_difficulty <= 3);
@@ -48,7 +46,7 @@ void GameEngine::printMap() {
 void GameEngine::play() {
     while (m_village->getNumOfVillagers() >= m_village->getMinVillagers()) {
         int choice = 0;
-        GameEngine::printMap();
+        m_village->printMap();
         m_village->printResources();
 
         std::cout << "(1) end round \n"
@@ -57,6 +55,7 @@ void GameEngine::play() {
         std::cin >> choice;
 
         while (choice == 2) {
+            m_village->printMap();
             m_village->checkTile();
             std::cout << "(1) end round \n"
                       << "(2) play \n";

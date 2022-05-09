@@ -8,7 +8,7 @@ class GameEngine {
     Village* m_village;
 
 public:
-    GameEngine(int difficulty);
+    GameEngine();
     void setup();
     int getDifficulty() const;
     static void printIntro();

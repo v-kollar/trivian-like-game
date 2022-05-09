@@ -81,4 +81,5 @@ Tile *Map::getType(std::string type) {
     if (type == "house") {
         return s_instanceHouse;
     }
+    return nullptr;
 }

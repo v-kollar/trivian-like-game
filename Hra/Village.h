@@ -10,7 +10,7 @@
 #include <string>
 #include "Building.h"
 #include "ResourceTable.h"
-
+#include "Map.h"
 class Village {
     int m_minVillagers; //minimální počet vesničanů na dané kolo
     int m_numOfVillagers; //aktuální stav vesničanů pro toto kolo
@@ -19,6 +19,7 @@ class Village {
     int m_stone; //počet jednotek suroviny kamene
     int m_iron; //počet jednotek suroviny železa
     int m_wheat; //počet jednotek suroviny obilí
+    Map* m_map;
 public:
     Village(int minVillagers, int numOfVillagers, int wood, int stone, int iron, int wheat); //konstruktor třídy Village
     void checkTile(); //zkontroluje zda některá budova již nestojí na zadané souřadnici
@@ -30,6 +31,7 @@ public:
     void addNewResources(); //na konci kola přičte nově získáne suroviny k těm stávajícím
     void printResources() const;
     void feedVillagers();
+    void printMap();
 
 };
 

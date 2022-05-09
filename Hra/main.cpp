@@ -4,9 +4,10 @@
 #include "Map.h"
 
 int main() {
-    // auto* engine = new GameEngine();
-
+    auto* engine = new GameEngine();
+/*
     auto* map = new Map(6, 6);
+
 
     auto* farm = new Tile("X");
     auto* lumberj = new Tile("L");
@@ -29,4 +30,5 @@ int main() {
     delete map; delete farm; delete lumberj;
     delete quarry; delete house;
     return 0;
+*/
 }
