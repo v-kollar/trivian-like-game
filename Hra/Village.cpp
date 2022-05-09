@@ -6,6 +6,7 @@
 #include <array>
 #include <cassert>
 #include "Village.h"
+#include "GameEngine.h"
 
 Village::Village(int minVillagers, int numOfVillagers,
                  int wood, int stone, int iron, int wheat) {
@@ -15,7 +16,7 @@ Village::Village(int minVillagers, int numOfVillagers,
     m_stone = stone;
     m_iron = iron;
     m_wheat = wheat;
-    m_map = new Map(6,6);
+    m_map = new Map(6,6); //vyřešit mapu závislou na obtížnosti
 }
 
 int Village::getMinVillagers() const {
@@ -50,18 +51,13 @@ void Village::checkTile() {
                                             "lumberjackhouse","house"};
         std::string typeName;
 
-        std::cout << "\nWrite the number of the building you want to build:\n";
         for (int i = 0; i < types.size(); ++i) {
             std::array<int, 3> temp;
             temp = ResourceTable::getCostAndMaterial(types.at(i));
-            std::cout << types.at(i) << " - requirements: " << temp.at(0)
+            std::cout << "(" << i+1 << ") " << types.at(i) << " - requirements: " << temp.at(0)
                                      << " wood, " << temp.at(1)
                                      << " stone, " << temp.at(2) << " iron\n";
         }
-        /*
-        std::cout << "Vyberte ty    p budovy \n1 = farma
-         \n2 = kamenolom\n3 = dum drevorubce \n4 = obytny dum";
-        */
         std::cout << ">";
         std::cin >> type;
         assert(typeid(type) == typeid(int));
@@ -84,29 +80,18 @@ void Village::checkTile() {
         }
         addBuilding(typeName, row, col);
     }
-    /*
-    for (int i = 0; i < m_buildings.size(); ++i) {
-        if (m_buildings.at(i)->Building::getLocationRow() == row
-        && m_buildings.at(i)->Building::getLocationRow() == col ){
-            upgrade(m_buildings.at(i));
-        }
-    }
-    */
 }
 
 void Village::upgrade(Building* building){
-   std::cout << "stone: " << m_stone << "\n";
-   std::cout << "iron: " << m_iron << "\n";
-   std::cout << "wood: " << m_wood << "\n";
     if (building->getType() == "farm" ){
         if (m_iron > 0 and m_stone > 0 and m_wood > 0){
             m_iron -= 0;
             m_stone -= 0;
             m_wood -= 0;
             building->levelUp();
-            std::cout << "Upgrade finished\n";
+            std::cout << "***Upgrade FINISHED***\n";
         } else {
-            std::cerr << "Upgrade FAILED\n";
+            std::cerr << "\n***You don't have enough RESOURCES FOR UPGRADE!***\n";
         }
     }
     if (building->getType() == "quarry"){
@@ -115,32 +100,32 @@ void Village::upgrade(Building* building){
             m_stone -= 0;
             m_wood -= 0;
             building->levelUp();
-            std::cout << "Upgrade finished\n";
+            std::cout << "***Upgrade FINISHED***\n";
         } else {
-            std::cerr << "Upgrade FAILED\n";
+            std::cerr << "\n***You don't have enough RESOURCES FOR UPGRADE!***\n";
         }
 
     }
-    if (building->getType() == "lumberjackhouse"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
+    if (building->getType() == "lumberjackhouse"){
         if (m_iron > 0 and m_stone > 0 and m_wood > 0){
             m_iron -= 0;
             m_stone -= 0;
             m_wood -= 0;
             building->levelUp();
-            std::cout << "Upgrade finished\n";
+            std::cout << "***Upgrade FINISHED***\n";
         } else {
-            std::cerr << "Upgrade FAILED\n";
+            std::cerr << "\n***You don't have enough RESOURCES FOR UPGRADE!***\n";
         }
     }
-    if (building->getType() == "house"){ //VYŘEŠIT JAK BUDE FUNGOVAT UPGRADE
+    if (building->getType() == "house"){
         if (m_iron > 0 and m_stone > 0 and m_wood > 0) {
             m_iron -= 0;
             m_stone -= 0;
             m_wood -= 0;
             building->levelUp();
-            std::cout << "Upgrade finished\n";
+            std::cout << "***Upgrade FINISHED***\n";
         } else {
-            std::cerr << "Upgrade FAILED\n";
+            std::cerr << "\n***You don't have enough RESOURCES FOR UPGRADE!***\n";
         }
     }
 }
@@ -153,7 +138,7 @@ void Village::addBuilding(std::string type, int locationRow, int locationCol) {
         m_stone -= temp.at(1);
         m_iron -= temp.at(2);
         m_buildings.push_back(new Building(type, locationRow, locationCol,1));
-        std::cout << "Building finished\n";
+        std::cout << "***Building FINISHED***\n";
         if (type == "farm"){
             m_map->setValue(locationRow,locationCol,Map::s_instanceFarm);
         }
@@ -167,7 +152,7 @@ void Village::addBuilding(std::string type, int locationRow, int locationCol) {
             m_map->setValue(locationRow,locationCol,Map::s_instanceHouse);
         }
     } else {
-        std::cerr << "\nYou don't have enough resources!\n";
+        std::cerr << "\n***You don't have enough resources!***\n";
     }
 
 }
@@ -183,11 +168,6 @@ void Village::addNewResources() {
         if (m_buildings.at(i)->getType() == "lumberjackhouse") {
             m_wood += ResourceTable::getProducetQty(m_buildings.at(i));
         }
-        /*
-        if (m_buildings.at(i)->getType() == "house") {
-            m_numOfVillagers += ResourceTable::getProducetQty(m_buildings.at(i));
-        }
-        */
     }
 }
 
