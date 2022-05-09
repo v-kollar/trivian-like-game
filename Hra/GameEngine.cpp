@@ -57,6 +57,7 @@ void GameEngine::play() {
         while (choice == 2) {
             m_village->printMap();
             m_village->checkTile();
+            m_village->printResources();
             std::cout << "(1) end round \n"
                       << "(2) play \n";
             std::cin >> choice;
