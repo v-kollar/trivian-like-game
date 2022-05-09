@@ -17,7 +17,8 @@ Village::Village(int difficulty, int minVillagers, int numOfVillagers,
     m_stone = stone;
     m_iron = iron;
     m_wheat = wheat;
-    m_map = new Map(6,6); //vyřešit mapu závislou na obtížnosti
+    m_freeSpace = 18/m_difficulty *18/m_difficulty;
+    m_map = new Map(18/m_difficulty,18/m_difficulty);
 }
 
 int Village::getDifficulty() {
@@ -55,8 +56,9 @@ void Village::checkTile() {
         std::array<std::string, 4> types = {"farm", "quarry",
                                             "lumberjackhouse","house"};
         std::string typeName;
-
+        Village::printResources();
         for (int i = 0; i < types.size(); ++i) {
+
             std::array<int, 3> temp;
             temp = ResourceTable::getCostAndMaterial(types.at(i));
             std::cout << "(" << i+1 << ") " << types.at(i) << " - requirements: " << temp.at(0)
@@ -96,7 +98,7 @@ void Village::upgrade(Building* building){
             building->levelUp();
             std::cout << "***Upgrade FINISHED***\n";
         } else {
-            std::cerr << "\n***You don't have enough RESOURCES FOR UPGRADE!***\n";
+            std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
         }
     }
     if (building->getType() == "quarry"){
@@ -107,7 +109,7 @@ void Village::upgrade(Building* building){
             building->levelUp();
             std::cout << "***Upgrade FINISHED***\n";
         } else {
-            std::cerr << "\n***You don't have enough RESOURCES FOR UPGRADE!***\n";
+            std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
         }
 
     }
@@ -119,7 +121,7 @@ void Village::upgrade(Building* building){
             building->levelUp();
             std::cout << "***Upgrade FINISHED***\n";
         } else {
-            std::cerr << "\n***You don't have enough RESOURCES FOR UPGRADE!***\n";
+            std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
         }
     }
     if (building->getType() == "house"){
@@ -130,7 +132,7 @@ void Village::upgrade(Building* building){
             building->levelUp();
             std::cout << "***Upgrade FINISHED***\n";
         } else {
-            std::cerr << "\n***You don't have enough RESOURCES FOR UPGRADE!***\n";
+            std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
         }
     }
 }
@@ -138,7 +140,8 @@ void Village::upgrade(Building* building){
 void Village::addBuilding(std::string type, int locationRow, int locationCol) {
     std::array<int,3> temp;
     temp = ResourceTable::getCostAndMaterial(type);
-    if (m_wood>=temp.at(0) and m_stone>=temp.at(1) and m_iron >= temp.at(2)){
+    if (m_wood>=temp.at(0) and m_stone>=temp.at(1) and m_iron >= temp.at(2) and m_freeSpace>0){
+        m_freeSpace -=1;
         m_wood -= temp.at(0);
         m_stone -= temp.at(1);
         m_iron -= temp.at(2);
@@ -157,7 +160,7 @@ void Village::addBuilding(std::string type, int locationRow, int locationCol) {
             m_map->setValue(locationRow,locationCol,Map::s_instanceHouse);
         }
     } else {
-        std::cerr << "\n***You don't have enough resources!***\n";
+        std::cerr << "\n***You do NOT have ENOUGH RESOURCES or you are OUT OF SPACE!***\n";
     }
 
 }
@@ -177,9 +180,9 @@ void Village::addNewResources() {
 }
 
 void Village::printResources() const {
-    std::cout << "Available resources: \n"
+    std::cout << "***********Available resources**********\n"
     << m_wood << "x wood, " << m_stone << "x stone, "
-    << m_iron << "x iron, " << m_wheat << "x wheat\n\n";
+    << m_iron << "x iron, " << m_wheat << "x wheat\n****************************************\n";
 }
 
 void Village::feedVillagers() {
