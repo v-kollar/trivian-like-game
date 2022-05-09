@@ -27,13 +27,12 @@ int Village::getNumOfVillagers() const {
 }
 
 void Village::checkTile() {
-    int row;
-    int col;
+    int row; int col;
     int index = 0;
     bool isChecked = false;
-    std::cout << "Input row number: \n";
+    std::cout << "Input row number :";
     std::cin >> row;
-    std::cout << "Input column number: \n";
+    std::cout << "Input column number :";
     std::cin >> col;
     while (index != m_buildings.size()) {
         if (m_buildings.at(index)->Building::getLocationRow() == row
@@ -49,8 +48,9 @@ void Village::checkTile() {
         int type;
         std::array<std::string, 4> types = {"farm", "quarry",
                                             "lumberjackhouse","house"};
-        std::string typeName = "";
+        std::string typeName;
 
+        std::cout << "\nWrite the number of the building you want to build:\n";
         for (int i = 0; i < types.size(); ++i) {
             std::array<int, 3> temp;
             temp = ResourceTable::getCostAndMaterial(types.at(i));
@@ -62,6 +62,7 @@ void Village::checkTile() {
         std::cout << "Vyberte ty    p budovy \n1 = farma
          \n2 = kamenolom\n3 = dum drevorubce \n4 = obytny dum";
         */
+        std::cout << ">";
         std::cin >> type;
         assert(typeid(type) == typeid(int));
         switch (type) {
@@ -104,7 +105,7 @@ void Village::upgrade(Building* building){
             m_wood -= 0;
             building->levelUp();
             std::cout << "Upgrade finished\n";
-        } else{
+        } else {
             std::cerr << "Upgrade FAILED\n";
         }
     }
@@ -166,7 +167,7 @@ void Village::addBuilding(std::string type, int locationRow, int locationCol) {
             m_map->setValue(locationRow,locationCol,Map::s_instanceHouse);
         }
     } else {
-        std::cerr << "You don't have enough resources!\n";
+        std::cerr << "\nYou don't have enough resources!\n";
     }
 
 }
@@ -193,7 +194,7 @@ void Village::addNewResources() {
 void Village::printResources() const {
     std::cout << "Available resources: \n"
     << m_wood << "x wood, " << m_stone << "x stone, "
-    << m_iron << "x iron, " << m_wheat << "x wheat.\n\n";
+    << m_iron << "x iron, " << m_wheat << "x wheat\n\n";
 }
 
 void Village::feedVillagers() {
