@@ -10,29 +10,26 @@ ResourceTable::ResourceTable() {
 }
 
 std::array<int, 3> ResourceTable::getCostAndMaterial(std::string type) {
+    std::array<int, 3> temp;
     if (type == "house") {
-        std::array<int, 3> temp;
         temp.at(0) = 5;
         temp.at(1) = 5;
         temp.at(2) = 2;
         return temp;
 
     } else if (type == "quarry") {
-        std::array<int, 3> temp;
         temp.at(0) = 2;
         temp.at(1) = 4;
         temp.at(2) = 5;
         return temp;
 
     } else if (type == "lumberjackhouse") {
-        std::array<int, 3> temp;
         temp.at(0) = 5;
         temp.at(1) = 5;
         temp.at(2) = 2;
         return temp;
 
     } else if (type == "farm") {
-        std::array<int, 3> temp;
         temp.at(0) = 5;
         temp.at(1) = 3;
         temp.at(2) = 2;
@@ -44,7 +41,7 @@ std::array<int, 3> ResourceTable::getCostAndMaterial(std::string type) {
     }
 }
 
-int ResourceTable::getProducetQty(Building *building) {
+int ResourceTable::getProducedQty(Building *building) {
     if (building->getType() == "house") {
         return building->getLevel() * 5;
 

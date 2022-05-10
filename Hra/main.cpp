@@ -29,6 +29,6 @@ int main() {
 
     delete map; delete farm; delete lumberj;
     delete quarry; delete house;
-    return 0;
 */
+    return 0;
 }

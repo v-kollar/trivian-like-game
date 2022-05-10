@@ -15,7 +15,7 @@ class ResourceTable {
     ResourceTable();
 public:
     static std::array<int, 3> getCostAndMaterial(std::string type);
-    static int getProducetQty(Building* building);
+    static int getProducedQty(Building* building);
 };
 
 

@@ -164,13 +164,13 @@ void Village::addBuilding(std::string type, int locationRow, int locationCol) {
 void Village::addNewResources() {
     for (int i = 0; i < m_buildings.size(); ++i) {
         if (m_buildings.at(i)->getType() == "farm") {
-            m_wheat += ResourceTable::getProducetQty(m_buildings.at(i));
+            m_wheat += ResourceTable::getProducedQty(m_buildings.at(i));
         }
         if (m_buildings.at(i)->getType() == "quarry") {
-            m_stone += ResourceTable::getProducetQty(m_buildings.at(i));
+            m_stone += ResourceTable::getProducedQty(m_buildings.at(i));
         }
         if (m_buildings.at(i)->getType() == "lumberjackhouse") {
-            m_wood += ResourceTable::getProducetQty(m_buildings.at(i));
+            m_wood += ResourceTable::getProducedQty(m_buildings.at(i));
         }
     }
 }
@@ -185,7 +185,7 @@ void Village::feedVillagers() {
     int requiredFood = 0;
     for (int i = 0; i < m_buildings.size(); ++i) {
         if (m_buildings.at(i)->getType() == "house"){
-            requiredFood += ResourceTable::getProducetQty(m_buildings.at(i));
+            requiredFood += ResourceTable::getProducedQty(m_buildings.at(i));
         }
     }
     if (m_numOfVillagers + requiredFood < m_wheat){
