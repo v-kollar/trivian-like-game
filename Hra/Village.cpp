@@ -21,10 +21,6 @@ Village::Village(int difficulty, int minVillagers, int numOfVillagers,
     m_map = new Map(18/m_difficulty,18/m_difficulty);
 }
 
-int Village::getDifficulty() {
-    return m_difficulty;
-}
-
 int Village::getMinVillagers() const {
     return m_minVillagers;
 }
@@ -182,12 +178,11 @@ void Village::addNewResources() {
 void Village::printResources() const {
     std::cout << "***********Available resources**********\n"
     << m_wood << "x wood, " << m_stone << "x stone, "
-    << m_iron << "x iron, " << m_wheat << "x wheat\n****************************************\n";
+    << m_iron << "x iron, " << m_wheat << "x wheat, "<< m_numOfVillagers << "x villager" <<"\n****************************************\n";
 }
 
 void Village::feedVillagers() {
     int requiredFood = 0;
-    std::cout << m_numOfVillagers << "\n";
     for (int i = 0; i < m_buildings.size(); ++i) {
         if (m_buildings.at(i)->getType() == "house"){
             requiredFood += ResourceTable::getProducetQty(m_buildings.at(i));

@@ -11,8 +11,8 @@ GameEngine::GameEngine() {
     std::cin >> SelectedDifficulty;
     assert(SelectedDifficulty >= 1 and SelectedDifficulty <= 3);
 
-    m_village = new Village(SelectedDifficulty, SelectedDifficulty * 5, (SelectedDifficulty * 5 + 2),
-                             15, 5, 5, 5 );
+    m_village = new Village(SelectedDifficulty, 1, (SelectedDifficulty * 5 + 2),
+                             300/SelectedDifficulty, 300/SelectedDifficulty, 300/SelectedDifficulty, 150/SelectedDifficulty);
     GameEngine::play();
 }
 
