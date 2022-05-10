@@ -16,9 +16,9 @@ GameEngine::GameEngine() {
     GameEngine::play();
 }
 
-void GameEngine::setup() {
-    // sets up the beginning of round?
-}
+//void GameEngine::setup() {
+//    // sets up the beginning of round?
+//}
 
 
 void GameEngine::printIntro() {
@@ -36,10 +36,10 @@ void GameEngine::printOutro() {
     std::cout << "Some epic outro about not giving up and keep playing...\n";
 }
 
-void GameEngine::printMap() {
-    std::cout << "This is what the world map looks like at the moment: \n"
-              << "### here player will see an epic map ###\n\n";  // prints a map
-}
+//void GameEngine::printMap() {
+//    std::cout << "This is what the world map looks like at the moment: \n"
+//              << "### here player will see an epic map ###\n\n";  // prints a map
+//}
 
 void GameEngine::play() {
     while (m_village->getNumOfVillagers() >= m_village->getMinVillagers()) {
@@ -66,9 +66,9 @@ void GameEngine::play() {
     GameEngine::~GameEngine();
 }
 
-void GameEngine::endRound() {
-    // indicates, that round has ended
-}
+//void GameEngine::endRound() {
+//    // indicates, that round has ended
+//}
 
 GameEngine::~GameEngine() {
     delete m_village;

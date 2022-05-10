@@ -8,12 +8,12 @@ class GameEngine {
 
 public:
     GameEngine();
-    void setup();
+//    void setup();
     static void printIntro();
     static void printOutro();
-    void printMap();  // to be added
+//    void printMap();  // to be added
     void play();
-    void endRound();
+//    void endRound();
     ~GameEngine();
 };
 
