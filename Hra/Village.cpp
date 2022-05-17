@@ -17,8 +17,8 @@ Village::Village(int difficulty, int minVillagers, int numOfVillagers,
     m_stone = stone;
     m_iron = iron;
     m_wheat = wheat;
-    m_freeSpace = 18/m_difficulty *18/m_difficulty;
-    m_map = new Map(18/m_difficulty,18/m_difficulty);
+    m_freeSpace = (18/(m_difficulty+1)+1) * (18/(m_difficulty+1)+1);
+    m_map = new Map(18/(m_difficulty+1)+1,18/(m_difficulty+1)+1);
 }
 
 int Village::getMinVillagers() const {
@@ -86,51 +86,56 @@ void Village::checkTile() {
 }
 
 void Village::upgrade(Building* building){
-    if (building->getType() == "farm" ){
-        if (m_iron > 0 and m_stone > 0 and m_wood > 0){
-            m_iron -= 0;
-            m_stone -= 0;
-            m_wood -= 0;
-            building->levelUp();
-            std::cout << "***Upgrade FINISHED***\n";
-        } else {
-            std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
+    if (building->getLevel()!= 3){
+        if (building->getType() == "farm" ){
+            if (m_iron > ((building->getLevel())*35) and m_stone > ((building->getLevel())*45) and m_wood > ((building->getLevel())*35)){
+                m_iron -= ((building->getLevel())*35);
+                m_stone -= ((building->getLevel())*45);
+                m_wood -= ((building->getLevel())*35);
+                building->levelUp();
+                std::cout << "***Upgrade FINISHED***\n";
+            } else {
+                std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
+            }
         }
-    }
-    if (building->getType() == "quarry"){
-        if (m_iron > 0 and m_stone > 0 and m_wood > 0){
-            m_iron -= 0;
-            m_stone -= 0;
-            m_wood -= 0;
-            building->levelUp();
-            std::cout << "***Upgrade FINISHED***\n";
-        } else {
-            std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
-        }
+        if (building->getType() == "quarry"){
+            if (m_iron > ((building->getLevel())*15) and m_stone > ((building->getLevel())*40) and m_wood > ((building->getLevel())*50)){
+                m_iron -= ((building->getLevel())*15);
+                m_stone -= ((building->getLevel())*40);
+                m_wood -= ((building->getLevel())*50);
+                building->levelUp();
+                std::cout << "***Upgrade FINISHED***\n";
+            } else {
+                std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
+            }
 
-    }
-    if (building->getType() == "lumberjackhouse"){
-        if (m_iron > 0 and m_stone > 0 and m_wood > 0){
-            m_iron -= 0;
-            m_stone -= 0;
-            m_wood -= 0;
-            building->levelUp();
-            std::cout << "***Upgrade FINISHED***\n";
-        } else {
-            std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
         }
-    }
-    if (building->getType() == "house"){
-        if (m_iron > 0 and m_stone > 0 and m_wood > 0) {
-            m_iron -= 0;
-            m_stone -= 0;
-            m_wood -= 0;
-            building->levelUp();
-            std::cout << "***Upgrade FINISHED***\n";
-        } else {
-            std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
+        if (building->getType() == "lumberjackhouse"){
+            if (m_iron > ((building->getLevel())*25) and m_stone > ((building->getLevel())*50) and m_wood > ((building->getLevel())*25)){
+                m_iron -= ((building->getLevel())*25) ;
+                m_stone -= ((building->getLevel())*50);
+                m_wood -= ((building->getLevel())*25);
+                building->levelUp();
+                std::cout << "***Upgrade FINISHED***\n";
+            } else {
+                std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
+            }
         }
+        if (building->getType() == "house"){
+            if (m_iron > ((building->getLevel())*25) and m_stone > ((building->getLevel())*45) and m_wood > ((building->getLevel())*35)) {
+                m_iron -= ((building->getLevel())*25);
+                m_stone -= ((building->getLevel())*45);
+                m_wood -= ((building->getLevel())*35);
+                building->levelUp();
+                std::cout << "***Upgrade FINISHED***\n";
+            } else {
+                std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
+            }
+        }
+    } else{
+        std::cout << "***This building is already at MAX LEVEL!***" << std::endl;
     }
+
 }
 
 void Village::addBuilding(std::string type, int locationRow, int locationCol) {
@@ -168,6 +173,7 @@ void Village::addNewResources() {
         }
         if (m_buildings.at(i)->getType() == "quarry") {
             m_stone += ResourceTable::getProducedQty(m_buildings.at(i));
+            m_iron += ResourceTable::getProducedQty(m_buildings.at(i));
         }
         if (m_buildings.at(i)->getType() == "lumberjackhouse") {
             m_wood += ResourceTable::getProducedQty(m_buildings.at(i));
