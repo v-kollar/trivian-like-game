@@ -4,21 +4,14 @@
 #include "Village.h"
 
 GameEngine::GameEngine() {
-    int SelectedDifficulty;
-    SelectedDifficulty = 0;
     GameEngine::printIntro();
-    std::cout << ">";
-    std::cin >> SelectedDifficulty;
-    assert(SelectedDifficulty >= 1 and SelectedDifficulty <= 3);
+
+    int SelectedDifficulty = selectDifficulty();
 
     m_village = new Village(SelectedDifficulty, 1, (SelectedDifficulty * 5 + 2),
                              300/SelectedDifficulty, 300/SelectedDifficulty, 300/SelectedDifficulty, 150/SelectedDifficulty);
     GameEngine::play();
 }
-
-//void GameEngine::setup() {
-//    // sets up the beginning of round?
-//}
 
 
 void GameEngine::printIntro() {
@@ -27,19 +20,35 @@ void GameEngine::printIntro() {
                  "and upgrade as many buildings as possible without lossing\n"
                  "all your resources.\n"
                  "-------------------------------------------------------------\n"
-                 "Map size is determined by the selected difficulty.\n" // sizes of each difficulties
-                 "First, type the number of desired difficulty:\n"
+                 "Map size is determined by the selected difficulty.\n"; // sizes of each difficulties
+
+}
+
+
+int GameEngine::selectDifficulty() {
+    int choice;
+    bool err = false;
+    std::cout << "First, type the number of desired difficulty:\n"
                  "(1) easy\t(2) medium\t(3) hard\n\n";
+    choice = GameEngine::selectChoice();
+    if (choice == 1 or choice == 2 or choice == 3) {
+        return choice;
+    } else {
+        std::cout << "Select (1) easy or (2) medium or (3) hard...\n";
+        err = true;
+    }
+
+    while (err == true) {
+        choice = GameEngine::selectChoice();
+        if (choice == 1 or choice == 2 or choice == 3) {
+            err = false;
+            return choice;
+        } else {
+            std::cout << "Select (1) easy or (2) medium or (3) hard...\n";
+        }
+    }
 }
 
-void GameEngine::printOutro() {
-    std::cout << "Some epic outro about not giving up and keep playing...\n";
-}
-
-//void GameEngine::printMap() {
-//    std::cout << "This is what the world map looks like at the moment: \n"
-//              << "### here player will see an epic map ###\n\n";  // prints a map
-//}
 
 void GameEngine::play() {
     while (m_village->getNumOfVillagers() >= m_village->getMinVillagers()) {
@@ -47,18 +56,13 @@ void GameEngine::play() {
         m_village->printMap();
         m_village->printResources();
 
-        std::cout << "(1) end round \n"
-                  << "(2) play \n";
-
-        std::cin >> choice;
+        choice = selectPlayOrEnd();
 
         while (choice == 2) {
             m_village->printMap();
             m_village->checkTile();
             m_village->printResources();
-            std::cout << "(1) end round \n"
-                      << "(2) play \n";
-            std::cin >> choice;
+            choice = selectPlayOrEnd();
         }
         m_village->feedVillagers();
         m_village->addNewResources();
@@ -66,11 +70,70 @@ void GameEngine::play() {
     GameEngine::~GameEngine();
 }
 
-//void GameEngine::endRound() {
-//    // indicates, that round has ended
-//}
+
+void GameEngine::printOutro() {
+    std::cout << "Some epic outro about not giving up and keep playing...\n";
+}
+
+
+int GameEngine::selectChoice() {
+    std::string temp;
+    bool err = false;
+    std::cout << ">";
+    std::cin >> temp;
+
+    if (isnumber(temp)) {
+        return std::stoi(temp);
+    } else {
+        err = true;
+        std::cout << "Enter the option number!\n";
+    }
+
+    while (err == true) {
+        std::cout << ">";
+        std::cin >> temp;
+        if (isnumber(temp)) {
+            err = false;
+            return std::stoi(temp);
+        } else {
+            std::cout << "Enter the option number!\n";
+        }
+    }
+}
+
+int GameEngine::selectPlayOrEnd() {
+    int choice;
+    bool err = false;
+    std::cout << "(1) end round \n"
+              << "(2) play \n";
+    choice = GameEngine::selectChoice();
+    if (choice == 1 or choice == 2) {
+        return choice;
+    } else {
+        std::cout << "Select (1) end round or (2) play...\n";
+        err = true;
+    }
+
+    while (err == true) {
+        choice = GameEngine::selectChoice();
+        if (choice == 1 or choice == 2) {
+            err = false;
+            return choice;
+        } else {
+            std::cout << "Select (1) end round or (2) play...\n";
+        }
+    }
+}
+
+bool GameEngine::isnumber(const std::string &s) {
+        std::string::const_iterator it = s.begin();
+        while (it != s.end() && std::isdigit(*it)) ++it;
+        return !s.empty() && it == s.end();
+}
+
 
 GameEngine::~GameEngine() {
     delete m_village;
     GameEngine::printOutro();
 }
+

@@ -8,12 +8,13 @@ class GameEngine {
 
 public:
     GameEngine();
-//    void setup();
+    int selectDifficulty();
+    int selectPlayOrEnd();
+    int selectChoice();
+    static bool isnumber(const std::string& s);
     static void printIntro();
     static void printOutro();
-//    void printMap();  // to be added
     void play();
-//    void endRound();
     ~GameEngine();
 };
 
