@@ -4,6 +4,8 @@
 #include "Map.h"
 
 int main() {
+    std::string teststr = "h 2";
+    std::cout << GameEngine::isnumber(teststr);
     auto* engine = new GameEngine();
 /*
     auto* map = new Map(6, 6);
