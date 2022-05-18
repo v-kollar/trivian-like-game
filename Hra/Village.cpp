@@ -7,6 +7,7 @@
 #include <cassert>
 #include "Village.h"
 #include "GameEngine.h"
+#include "Input.h"
 
 Village::Village(int difficulty, int minVillagers, int numOfVillagers,
                  int wood, int stone, int iron, int wheat) {
@@ -33,10 +34,10 @@ void Village::checkTile() {
     int row; int col;
     int index = 0;
     bool isChecked = false;
-    std::cout << "Input row number :";
-    std::cin >> row;
-    std::cout << "Input column number :";
-    std::cin >> col;
+    std::cout << "Input row number";
+    row = Input::selectLocation(m_difficulty);
+    std::cout << "Input column number";
+    col = Input::selectLocation(m_difficulty);
     while (index != m_buildings.size()) {
         if (m_buildings.at(index)->Building::getLocationRow() == row
         and m_buildings.at(index)->Building::getLocationCol() == col){
@@ -62,7 +63,7 @@ void Village::checkTile() {
                                      << " stone, " << temp.at(2) << " iron\n";
         }
         std::cout << ">";
-        std::cin >> type;
+        type = Input::selectBuildingType();
         assert(typeid(type) == typeid(int));
         switch (type) {
             case 1:

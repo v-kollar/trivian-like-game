@@ -15,6 +15,8 @@ public:
     static bool isNumber(std::string s);
     static int selectDifficulty();
     static int selectPlayOrEnd();
+    static int selectLocation(int difficulty);
+    static int selectBuildingType();
 };
 
 

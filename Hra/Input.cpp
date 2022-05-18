@@ -13,19 +13,13 @@ int Input::selectChoice() {
     std::string temp;
     bool err = false;
     std::cout << ">";
-    //std::cout << "Pred podminkou: " << temp;
     std::getline(std::cin, temp);
-    //std::cout << "Pred podminkou: " << temp;
-
-
 
     if (isNumber(temp)) {
-        std::cout << "Hodnota: \"" << temp << "\" projde IFem, isNumber: " << Input::isNumber(temp) << "isEmpty: " << temp.empty() << std::endl;
         return std::stoi(temp);
     } else {
         err = true;
         std::cout << "Enter the option number!\n";
-        //std::cout << "ELSE, " << isnumber(temp);
     }
 
     while (err == true) {
@@ -95,6 +89,50 @@ int Input::selectDifficulty() {
             return choice;
         } else {
             std::cout << "Select (1) easy or (2) medium or (3) hard...\n";
+        }
+    }
+}
+
+int Input::selectLocation(int difficulty) {
+    int choice;
+    bool err = false;
+    choice = Input::selectChoice();
+    if (choice >= 0 and choice < 18/(difficulty+1)+1) {
+        return choice;
+    } else {
+        std::cout << "You're off the map...\n";
+        err = true;
+    }
+
+    while (err == true) {
+        choice = Input::selectChoice();
+        if (choice >= 0 and choice < 18/(difficulty+1)+1) {
+            err = false;
+            return choice;
+        } else {
+            std::cout << "You're off the map...\n";
+        }
+    }
+}
+
+int Input::selectBuildingType() {
+    int choice;
+    bool err = false;
+    choice = Input::selectChoice();
+    if (choice == 1 or choice == 2 or choice == 3 or choice == 4) {
+        return choice;
+    } else {
+        std::cout << "Select (1) farm, (2) quarry, (3) lumberjackhouse, (4) house...\n";
+        err = true;
+    }
+
+    while (err == true) {
+        choice = Input::selectChoice();
+        if (choice == 1 or choice == 2 or choice == 3 or choice == 4) {
+            err = false;
+            return choice;
+        } else {
+            std::cout << "Select (1) farm, (2) quarry, (3) lumberjackhouse, (4) house...\n";
         }
     }
 }
