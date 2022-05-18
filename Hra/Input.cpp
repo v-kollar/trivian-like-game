@@ -13,13 +13,14 @@ int Input::selectChoice() {
     std::string temp;
     bool err = false;
     std::cout << ">";
+    //std::cout << "Pred podminkou: " << temp;
     std::getline(std::cin, temp);
     //std::cout << "Pred podminkou: " << temp;
 
 
 
     if (isNumber(temp)) {
-        //std::cout << "IF, " << isnumber(temp);
+        std::cout << "Hodnota: \"" << temp << "\" projde IFem, isNumber: " << Input::isNumber(temp) << "isEmpty: " << temp.empty() << std::endl;
         return std::stoi(temp);
     } else {
         err = true;
@@ -64,11 +65,14 @@ int Input::selectPlayOrEnd() {
 }
 
 bool Input::isNumber(std::string s) {
-    bool isnumber = true;
-    for (int i = 0; i < s.length(); i++)
-        if (isdigit(s[i]) == false)
-            isnumber = false;
-    return isnumber;
+    if (s.empty() == false) {
+        for (int i = 0; i < s.length(); i++)
+            if (isdigit(s[i]) == false)
+                return false;
+    } else {
+        return false;
+    }
+    return true;
 }
 
 int Input::selectDifficulty() {
