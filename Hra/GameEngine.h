@@ -8,10 +8,6 @@ class GameEngine {
 
 public:
     GameEngine();
-    int selectDifficulty();
-    int selectPlayOrEnd();
-    int selectChoice();
-    static bool isnumber(const std::string& s);
     static void printIntro();
     static void printOutro();
     void play();
