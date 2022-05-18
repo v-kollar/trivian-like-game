@@ -9,8 +9,8 @@ ResourceTable::ResourceTable() {
     //instance nebudou existovat
 }
 
-std::array<int, 3> ResourceTable::getCostAndMaterial(std::string type) {
-    std::array<int, 3> temp;
+std::array<int, 3> ResourceTable::getCostAndMaterial(const std::string& type) {
+    std::array<int, 3> temp{};
     if (type == "house") {
         temp.at(0) = 35;
         temp.at(1) = 25;
@@ -36,8 +36,8 @@ std::array<int, 3> ResourceTable::getCostAndMaterial(std::string type) {
         return temp;
 
     } else {
-        std::cerr << "Error -1: It is not possible to create other than the defined building types. Please contact the APP developers." << std::endl;
-        return std::array<int, 3>();
+        std::cerr << "Error 406: Cannot build other than pre-defined building types.\n";
+        return {};
     }
 }
 
@@ -55,8 +55,7 @@ int ResourceTable::getProducedQty(Building *building) {
         return building->getLevel() * 7;
 
     } else {
-        std::cerr << "Error -1: It is not possible to do this operation. Please contact the APP developers." << std::endl;
+        std::cerr << "Error 406: Operation rejected. Please, try again.\n";
         return -1;
     }
-
 }

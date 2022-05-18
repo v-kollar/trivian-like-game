@@ -24,5 +24,5 @@ int Building::getLevel() {
 }
 
 void Building::levelUp() {
-    m_level += 1;
+    m_level++;
 }

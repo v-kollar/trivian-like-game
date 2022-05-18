@@ -68,7 +68,7 @@ void Map::show() {
     }
 }
 
-Tile *Map::getType(std::string type) {
+Tile* Map::getType(std::string type) {
     if (type == "farm") {
         return s_instanceFarm;
     }

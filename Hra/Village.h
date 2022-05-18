@@ -15,7 +15,7 @@ class Village {
     int m_difficulty;
     int m_minVillagers; //minimální počet vesničanů na dané kolo
     int m_numOfVillagers; //aktuální stav vesničanů pro toto kolo
-    int m_freeSpace;
+    int m_availableSpace;
     std::vector<Building*> m_buildings;
     int m_wood; //počet jednotek suroviny dřeva
     int m_stone; //počet jednotek suroviny kamene

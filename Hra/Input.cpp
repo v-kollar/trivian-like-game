@@ -22,7 +22,7 @@ int Input::selectChoice() {
         std::cout << "Enter the option number!\n";
     }
 
-    while (err == true) {
+    while (err) {
         std::cout << ">";
         std::getline(std::cin, temp);
         if (isNumber(temp)) {
@@ -47,7 +47,7 @@ int Input::selectPlayOrEnd() {
         err = true;
     }
 
-    while (err == true) {
+    while (err) {
         choice = Input::selectChoice();
         if (choice == 1 or choice == 2) {
             err = false;
@@ -59,9 +59,9 @@ int Input::selectPlayOrEnd() {
 }
 
 bool Input::isNumber(std::string s) {
-    if (s.empty() == false) {
-        for (int i = 0; i < s.length(); i++)
-            if (isdigit(s[i]) == false)
+    if (!s.empty()) {
+        for (char i : s)
+            if (isdigit(i) == false)
                 return false;
     } else {
         return false;
@@ -82,7 +82,7 @@ int Input::selectDifficulty() {
         err = true;
     }
 
-    while (err == true) {
+    while (err) {
         choice = Input::selectChoice();
         if (choice == 1 or choice == 2 or choice == 3) {
             err = false;
@@ -100,17 +100,17 @@ int Input::selectLocation(int difficulty) {
     if (choice >= 0 and choice < 18/(difficulty+1)+1) {
         return choice;
     } else {
-        std::cout << "You're off the map...\n";
+        std::cerr << " Oops! Selected number is not on the map! Try again\n";
         err = true;
     }
 
-    while (err == true) {
+    while (err) {
         choice = Input::selectChoice();
-        if (choice >= 0 and choice < 18/(difficulty+1)+1) {
+        if (choice >= 0 and choice < 18 / (difficulty + 1) + 1) {
             err = false;
             return choice;
         } else {
-            std::cout << "You're off the map...\n";
+            std::cerr << " Oops! Selected number is not on the map! Try again\n";
         }
     }
 }
@@ -126,7 +126,7 @@ int Input::selectBuildingType() {
         err = true;
     }
 
-    while (err == true) {
+    while (err) {
         choice = Input::selectChoice();
         if (choice == 1 or choice == 2 or choice == 3 or choice == 4) {
             err = false;
@@ -136,5 +136,3 @@ int Input::selectBuildingType() {
         }
     }
 }
-
-

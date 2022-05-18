@@ -6,10 +6,8 @@
 #include "Tile.h"
 
 class Map {
-    std::vector<std::vector<Tile *>> m_map;
-
+    std::vector<std::vector<Tile*>> m_map;
     static bool isNonZero(unsigned int width, unsigned int height);
-
     bool isOnMap(unsigned int row, unsigned int col);
 
 public:
@@ -19,7 +17,7 @@ public:
     static inline Tile* s_instanceHouse = new Tile("H");
     Map(unsigned int width, unsigned int height);
 
-    Tile *getValue(unsigned int row, unsigned int col);
+    Tile* getValue(unsigned int row, unsigned int col);
 
     void setValue(unsigned int row, unsigned int col, Tile *value);
 
