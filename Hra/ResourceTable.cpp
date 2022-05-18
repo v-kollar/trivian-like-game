@@ -43,7 +43,7 @@ std::array<int, 3> ResourceTable::getCostAndMaterial(std::string type) {
 
 int ResourceTable::getProducedQty(Building *building) {
     if (building->getType() == "house") {
-        return building->getLevel() * 5;
+        return building->getLevel() * 4;
 
     } else if (building->getType() == "quarry") {
         return building->getLevel() * 7;

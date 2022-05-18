@@ -87,9 +87,17 @@ void Village::checkTile() {
 }
 
 void Village::upgrade(Building* building){
+    std::string choice;
     if (building->getLevel()!= 3){
         if (building->getType() == "farm" ){
-            if (m_iron > ((building->getLevel())*35) and m_stone > ((building->getLevel())*45) and m_wood > ((building->getLevel())*35)){
+            std::cout << "***UPGRADE REQUIREMENTS - iron: " << (building->getLevel())*35 <<"x stone: " << (building->getLevel())*45 << "x wood: " << (building->getLevel())*35 << "x***"<< std::endl;
+            std::cout << "(1) upgrade \n(2) cancel" << std::endl;
+            std::cout << ">";
+            std::getline(std::cin, choice);
+            if (choice == "2") {
+                std::cout << "***Upgrade CANCELED***" << std::endl;
+            }
+            else if (m_iron >= ((building->getLevel())*35) and m_stone >= ((building->getLevel())*45) and m_wood >= ((building->getLevel())*35) and choice == "1"){
                 m_iron -= ((building->getLevel())*35);
                 m_stone -= ((building->getLevel())*45);
                 m_wood -= ((building->getLevel())*35);
@@ -97,10 +105,19 @@ void Village::upgrade(Building* building){
                 std::cout << "***Upgrade FINISHED***\n";
             } else {
                 std::cerr << "\n***You do NOT have ENOUGH RESOURCES FOR UPGRADE!***\n";
+
             }
+
         }
         if (building->getType() == "quarry"){
-            if (m_iron > ((building->getLevel())*15) and m_stone > ((building->getLevel())*40) and m_wood > ((building->getLevel())*50)){
+            std::cout << "***UPGRADE REQUIREMENTS - iron: " << (building->getLevel())*15 <<"x stone: " << (building->getLevel())*40 << "x wood: " << (building->getLevel())*50 << "x***"<< std::endl;
+            std::cout << "(1) upgrade \n(2) cancel" << std::endl;
+            std::cout << ">";
+            std::getline(std::cin, choice);
+            if (choice == "2") {
+                std::cout << "***Upgrade CANCELED***" << std::endl;
+            }
+            else if (m_iron >= ((building->getLevel())*15) and m_stone >= ((building->getLevel())*40) and m_wood >= ((building->getLevel())*50)){
                 m_iron -= ((building->getLevel())*15);
                 m_stone -= ((building->getLevel())*40);
                 m_wood -= ((building->getLevel())*50);
@@ -112,7 +129,14 @@ void Village::upgrade(Building* building){
 
         }
         if (building->getType() == "lumberjackhouse"){
-            if (m_iron > ((building->getLevel())*25) and m_stone > ((building->getLevel())*50) and m_wood > ((building->getLevel())*25)){
+            std::cout << "***UPGRADE REQUIREMENTS - iron: " << (building->getLevel())*25 <<"x stone: " << (building->getLevel())*50 << "x wood: " << (building->getLevel())*25 << "x***"<< std::endl;
+            std::cout << "(1) upgrade \n(2) cancel" << std::endl;
+            std::cout << ">";
+            std::getline(std::cin, choice);
+            if (choice == "2") {
+                std::cout << "***Upgrade CANCELED***" << std::endl;
+            }
+            else if (m_iron >= ((building->getLevel())*25) and m_stone >= ((building->getLevel())*50) and m_wood >= ((building->getLevel())*25)){
                 m_iron -= ((building->getLevel())*25) ;
                 m_stone -= ((building->getLevel())*50);
                 m_wood -= ((building->getLevel())*25);
@@ -123,7 +147,14 @@ void Village::upgrade(Building* building){
             }
         }
         if (building->getType() == "house"){
-            if (m_iron > ((building->getLevel())*25) and m_stone > ((building->getLevel())*45) and m_wood > ((building->getLevel())*35)) {
+            std::cout << "***UPGRADE REQUIREMENTS - iron: " << (building->getLevel())*25 <<"x stone: " << (building->getLevel())*45 << "x wood: " << (building->getLevel())*35 << "x***"<< std::endl;
+            std::cout << "(1) upgrade \n(2) cancel" << std::endl;
+            std::cout << ">";
+            std::getline(std::cin, choice);
+            if (choice == "2") {
+                std::cout << "***Upgrade CANCELED***" << std::endl;
+            }
+            else if (m_iron >= ((building->getLevel())*25) and m_stone >= ((building->getLevel())*45) and m_wood >= ((building->getLevel())*35)) {
                 m_iron -= ((building->getLevel())*25);
                 m_stone -= ((building->getLevel())*45);
                 m_wood -= ((building->getLevel())*35);
@@ -185,7 +216,7 @@ void Village::addNewResources() {
 void Village::printResources() const {
     std::cout << "***********Available resources**********\n"
     << m_wood << "x wood, " << m_stone << "x stone, "
-    << m_iron << "x iron, " << m_wheat << "x wheat, "<< m_numOfVillagers << "x villager" <<"\n****************************************\n";
+    << m_iron << "x iron, " << m_wheat << "x wheat, "<< m_numOfVillagers << "x villager" <<"\n****************************************\n" << "MINIMUM number of VILLAGERS FOR NEXT ROUND: " << m_minVillagers << "\n****************************************" <<std::endl;
 }
 
 void Village::feedVillagers() {
@@ -206,4 +237,10 @@ void Village::feedVillagers() {
 
 void Village::printMap() {
     m_map->show();
+}
+
+void Village::setMinVillagers() {
+    m_minVillagers += m_difficulty * 2;
+
+
 }

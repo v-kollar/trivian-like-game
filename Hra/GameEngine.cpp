@@ -29,6 +29,7 @@ void GameEngine::printIntro() {
 void GameEngine::play() {
     int choice = 0;
     while (m_village->getNumOfVillagers() >= m_village->getMinVillagers()) {
+        m_village->setMinVillagers();
         m_village->printMap();
         m_village->printResources();
 
@@ -40,8 +41,10 @@ void GameEngine::play() {
             m_village->printResources();
             choice = Input::selectPlayOrEnd();
         }
-        m_village->feedVillagers();
         m_village->addNewResources();
+        m_village->feedVillagers();
+
+
     }
     GameEngine::~GameEngine();
 }
