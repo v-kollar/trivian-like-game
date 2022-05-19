@@ -25,7 +25,7 @@ class Village {
 public:
     Village(int difficulty, int minVillagers, int numOfVillagers, int wood, int stone, int iron, int wheat); //konstruktor třídy Village
     void checkTile(); //zkontroluje zda některá budova již nestojí na zadané souřadnici
-    void addBuilding(std::string type, int locationRow, int locationCol); //přidá novou instanci třídy budovy do pole m_buildings
+    void addBuilding(const std::string& type, int locationRow, int locationCol); //přidá novou instanci třídy budovy do pole m_buildings
     void upgrade(Building* building); //vylepší některou z budov v poli m_buildings
     int getMinVillagers() const; //vrátí hodnotu m_minVillagers
     int getNumOfVillagers() const; //vratí hodnotu m_numOfVillagers
@@ -34,7 +34,6 @@ public:
     void feedVillagers(); //na konci kola nakrmí stávající i nové vesničany, pokud není dostatek jídla zůstane pouze část stávajících
     void printMap(); //vykreslí na obrazovku mapu
     void setMinVillagers();
-
 };
 
 

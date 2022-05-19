@@ -103,7 +103,7 @@ void Village::upgrade(Building* building){
                 building->levelUp();
                 std::cout << "*********** Upgrade finished successfully ***********\n\n";
             } else {
-                std::cerr << "\n*********** You DO NOT have enough resources for the upgrade! ***********\n";
+                std::cerr << "\n*********** DO NOT have enough resources for the upgrade! ***********\n";
 
             }
 
@@ -124,7 +124,7 @@ void Village::upgrade(Building* building){
                 building->levelUp();
                 std::cout << "*********** Upgrade finished successfully ***********\n\n";
             } else {
-                std::cerr << "\n************ You DO NOT have enough resources for the upgrade! ***********\n";
+                std::cerr << "\n************ DO NOT have enough resources for the upgrade! ***********\n";
             }
 
         }
@@ -144,12 +144,13 @@ void Village::upgrade(Building* building){
                 building->levelUp();
                 std::cout << "*********** Upgrade finished successfully ***********\n\n";
             } else {
-                std::cerr << "\nYou DO NOT have enough resources for the upgrade!\n";
+                std::cerr << "\nDO NOT have enough resources for the upgrade!\n";
             }
         }
         if (building->getType() == "house"){
-            std::cout << "*** UPGRADE REQUIREMENTS - iron: " << (building->getLevel()) * 25 << "x stone: "
-                      << (building->getLevel()) * 45 << "x wood: " << (building->getLevel()) * 35 << "x ***\n";
+            std::cout << "*********** Upgrade requirements ***********\n"
+                         "- iron: " << (building->getLevel()) * 25 << "x stone: "
+                         << (building->getLevel()) * 45 << "x wood: " << (building->getLevel()) * 35 << "x ***\n";
             choice = Input::selectUpgradeOrCancel();
             if (choice == 2) {
                 std::cout << "*** Upgrade cancelled ***\n";
@@ -162,7 +163,7 @@ void Village::upgrade(Building* building){
                 building->levelUp();
                 std::cout << "*** Upgrade finished successfully ***\n";
             } else {
-                std::cerr << "\nYou DO NOT have enough resources for the upgrade!\n";
+                std::cerr << "\nDO NOT have enough resources for the upgrade!\n";
             }
         }
     } else{
@@ -171,7 +172,7 @@ void Village::upgrade(Building* building){
 
 }
 
-void Village::addBuilding(std::string type, int locationRow, int locationCol) {
+void Village::addBuilding(const std::string& type, int locationRow, int locationCol) {
     std::array<int,3> temp{};
     temp = ResourceTable::getCostAndMaterial(type);
     if (m_wood>=temp.at(0) and m_stone>=temp.at(1)
@@ -195,7 +196,7 @@ void Village::addBuilding(std::string type, int locationRow, int locationCol) {
             m_map->setValue(locationRow, locationCol, Map::s_instanceHouse);
         }
     } else {
-        std::cerr << "\nYou DO NOT have enough resources, or you ran out of space!\n";
+        std::cerr << "\nDO NOT have enough resources, or ran out of space!\n";
     }
 
 }

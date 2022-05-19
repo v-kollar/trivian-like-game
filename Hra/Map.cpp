@@ -39,25 +39,11 @@ Map::Map(unsigned int width, unsigned int height) {
     }
 }
 
-Tile* Map::getValue(unsigned int row, unsigned int col) {
-    if (isOnMap(row, col)) {
-        return m_map.at(row).at(col);
-    } else {
-        return nullptr;
-    }
-}
-
 void Map::setValue(unsigned int row, unsigned int col, Tile *value) {
     if (isOnMap(row, col)) {
         m_map.at(row).at(col) = value;
     }
 }
-
-//void Map::setAppearance(unsigned row, unsigned col, std::string appearance) {
-//    if (isOnMap(row, col)) {
-//        m_map.at(row).at(col)->setAppearance(appearance);
-//    }
-//}
 
 void Map::show() {
     for (const std::vector<Tile*>& row : m_map) {
@@ -66,20 +52,4 @@ void Map::show() {
         }
         std::cout << "\n";
     }
-}
-
-Tile* Map::getType(std::string type) {
-    if (type == "farm") {
-        return s_instanceFarm;
-    }
-    if (type == "quarry") {
-        return s_instanceQuarry;
-    }
-    if (type == "lumberjackhouse") {
-        return s_instanceLumberjackhouse;
-    }
-    if (type == "house") {
-        return s_instanceHouse;
-    }
-    return nullptr;
 }

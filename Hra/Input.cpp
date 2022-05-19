@@ -5,9 +5,7 @@
 #include <iostream>
 #include "Input.h"
 
-Input::Input() {
-
-}
+Input::Input() = default;
 
 int Input::selectChoice() {
     std::string temp;
@@ -19,7 +17,7 @@ int Input::selectChoice() {
         return std::stoi(temp);
     } else {
         err = true;
-        std::cout << "Enter the option number!\n";
+        std::cerr << "Wrong input. Try again.\n";
     }
 
     while (err) {
@@ -29,9 +27,10 @@ int Input::selectChoice() {
             err = false;
             return std::stoi(temp);
         } else {
-            std::cout << "Enter the option number!\n";
+            std::cerr << "Wrong input. Try again.\n";
         }
     }
+    return 0;
 }
 
 int Input::selectPlayOrEnd() {
@@ -58,10 +57,10 @@ int Input::selectPlayOrEnd() {
     }
 }
 
-bool Input::isNumber(std::string s) {
+bool Input::isNumber(const std::string& s) {
     if (!s.empty()) {
         for (char i : s)
-            if (isdigit(i) == false)
+            if (!isdigit(i))
                 return false;
     } else {
         return false;
@@ -91,6 +90,7 @@ int Input::selectDifficulty() {
             std::cout << "Select (1) easy or (2) medium or (3) hard...\n";
         }
     }
+    return 0;
 }
 
 int Input::selectLocation(int difficulty) {
@@ -113,6 +113,7 @@ int Input::selectLocation(int difficulty) {
             std::cerr << " Oops! Selected number is not on the map! Try again\n";
         }
     }
+    return 0;
 }
 
 int Input::selectBuildingType() {
@@ -135,6 +136,7 @@ int Input::selectBuildingType() {
             std::cout << "Select (1) farm, (2) quarry, (3) lumberjackhouse, (4) house...\n";
         }
     }
+    return 0;
 }
 
 int Input::selectUpgradeOrCancel() {
@@ -158,4 +160,5 @@ int Input::selectUpgradeOrCancel() {
             std::cout << "Select (1) upgrade or (2) cancel...\n";
         }
     }
+    return 0;
 }

@@ -1,10 +1,6 @@
-#include <iostream>
-
 #include "GameEngine.h"
-#include "Map.h"
-#include "Input.h"
 
 int main() {
-    GameEngine::getInstance();
+    GameEngine* m_engine = GameEngine::getInstance();
     return 0;
 }

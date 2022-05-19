@@ -16,9 +16,9 @@ class Building {
 public:
     Building(std::string type, int locationRow, int locationCol, int level);
     std::string getType();
-    int getLocationRow();
-    int getLocationCol();
-    int getLevel();
+    int getLocationRow() const;
+    int getLocationCol() const;
+    int getLevel() const;
     void levelUp();
 };
 

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cassert>
 #include "GameEngine.h"
 #include "Village.h"
 #include "Input.h"
@@ -8,11 +7,10 @@ GameEngine* GameEngine::m_engine = nullptr;
 
 GameEngine::GameEngine() {
     GameEngine::printIntro();
-
     int chosenDifficulty = Input::selectDifficulty();
-
     m_village = new Village(chosenDifficulty, 1, (chosenDifficulty * 5 + 2),
-                             300/chosenDifficulty, 300/chosenDifficulty, 300/chosenDifficulty, 150/chosenDifficulty);
+                             300 / chosenDifficulty, 300 / chosenDifficulty,
+                             300 / chosenDifficulty, 150 / chosenDifficulty);
     GameEngine::play();
 }
 
@@ -35,7 +33,7 @@ void GameEngine::printIntro() {
 
 
 void GameEngine::play() {
-    int choice = 0;
+    int choice;
     while (m_village->getNumOfVillagers() >= m_village->getMinVillagers()) {
         m_village->setMinVillagers();
         m_village->printMap();
@@ -58,12 +56,12 @@ void GameEngine::play() {
 }
 
 
-void GameEngine::printOutro() {
-    std::cout << "Some epic outro about not giving up and keep playing...\n";
-}
-
 GameEngine::~GameEngine() {
     delete m_village;
     GameEngine::printOutro();
 }
 
+
+void GameEngine::printOutro() {
+    std::cout << "Some epic outro about not giving up and keep playing...\n";
+}
