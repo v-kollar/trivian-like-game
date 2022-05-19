@@ -4,16 +4,24 @@
 #include "Village.h"
 #include "Input.h"
 
+GameEngine* GameEngine::m_engine = nullptr;
+
 GameEngine::GameEngine() {
     GameEngine::printIntro();
 
-    int SelectedDifficulty = Input::selectDifficulty();
+    int chosenDifficulty = Input::selectDifficulty();
 
-    m_village = new Village(SelectedDifficulty, 1, (SelectedDifficulty * 5 + 2),
-                             300/SelectedDifficulty, 300/SelectedDifficulty, 300/SelectedDifficulty, 150/SelectedDifficulty);
+    m_village = new Village(chosenDifficulty, 1, (chosenDifficulty * 5 + 2),
+                             300/chosenDifficulty, 300/chosenDifficulty, 300/chosenDifficulty, 150/chosenDifficulty);
     GameEngine::play();
 }
 
+GameEngine* GameEngine::getInstance() {
+    if (m_engine == nullptr) {
+        m_engine = new GameEngine();
+    }
+    return m_engine;
+}
 
 void GameEngine::printIntro() {
     std::cout << "\nWelcome player! This game is being made as school project\n"

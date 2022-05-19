@@ -8,6 +8,8 @@ class GameEngine {
 
 public:
     GameEngine();
+    static GameEngine* m_engine;
+    static GameEngine* getInstance();
     static void printIntro();
     static void printOutro();
     void play();

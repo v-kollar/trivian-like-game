@@ -5,6 +5,6 @@
 #include "Input.h"
 
 int main() {
-    auto* engine = new GameEngine();
+    GameEngine::getInstance();
     return 0;
 }
