@@ -103,7 +103,7 @@ void Village::upgrade(Building* building){
                 building->levelUp();
                 std::cout << "*********** Upgrade finished successfully ***********\n\n";
             } else {
-                std::cerr << "\n*********** DO NOT have enough resources for the upgrade! ***********\n";
+                std::cout << "\n*********** DO NOT have enough resources for the upgrade! ***********\n";
 
             }
 
@@ -124,7 +124,7 @@ void Village::upgrade(Building* building){
                 building->levelUp();
                 std::cout << "*********** Upgrade finished successfully ***********\n\n";
             } else {
-                std::cerr << "\n************ DO NOT have enough resources for the upgrade! ***********\n";
+                std::cout << "\n************ DO NOT have enough resources for the upgrade! ***********\n";
             }
 
         }
@@ -144,7 +144,7 @@ void Village::upgrade(Building* building){
                 building->levelUp();
                 std::cout << "*********** Upgrade finished successfully ***********\n\n";
             } else {
-                std::cerr << "\nDO NOT have enough resources for the upgrade!\n";
+                std::cout << "\nDO NOT have enough resources for the upgrade!\n";
             }
         }
         if (building->getType() == "house"){
@@ -163,11 +163,11 @@ void Village::upgrade(Building* building){
                 building->levelUp();
                 std::cout << "*** Upgrade finished successfully ***\n";
             } else {
-                std::cerr << "\nDO NOT have enough resources for the upgrade!\n";
+                std::cout << "\nDO NOT have enough resources for the upgrade!\n";
             }
         }
     } else{
-        std::cerr << "*** This building is already at max level! ***\n";
+        std::cout << "*** This building is already at max level! ***\n";
     }
 
 }
@@ -196,7 +196,7 @@ void Village::addBuilding(const std::string& type, int locationRow, int location
             m_map->setValue(locationRow, locationCol, Map::s_instanceHouse);
         }
     } else {
-        std::cerr << "\nDO NOT have enough resources, or ran out of space!\n";
+        std::cout << "\nDO NOT have enough resources, or ran out of space!\n";
     }
 
 }
