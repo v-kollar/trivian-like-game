@@ -17,6 +17,7 @@ public:
     static int selectPlayOrEnd();
     static int selectLocation(int difficulty);
     static int selectBuildingType();
+    static int selectUpgradeOrCancel();
 };
 
 

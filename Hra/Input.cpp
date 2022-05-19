@@ -136,3 +136,26 @@ int Input::selectBuildingType() {
         }
     }
 }
+
+int Input::selectUpgradeOrCancel() {
+    int choice;
+    bool err = false;
+    std::cout << "(1) upgrade\t(2) cancel\n";
+    choice = Input::selectChoice();
+    if (choice == 1 or choice == 2) {
+        return choice;
+    } else {
+        std::cout << "Select (1) upgrade or (2) cancel...\n";
+        err = true;
+    }
+
+    while (err) {
+        choice = Input::selectChoice();
+        if (choice == 1 or choice == 2) {
+            err = false;
+            return choice;
+        } else {
+            std::cout << "Select (1) upgrade or (2) cancel...\n";
+        }
+    }
+}

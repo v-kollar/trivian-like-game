@@ -61,7 +61,6 @@ void Village::checkTile() {
                                      << " wood, " << temp.at(1)
                                      << " stone, " << temp.at(2) << " iron\n";
         }
-        std::cout << "> ";
         type = Input::selectBuildingType();
         assert(typeid(type) == typeid(int));
         switch (type) {
@@ -86,20 +85,18 @@ void Village::checkTile() {
 }
 
 void Village::upgrade(Building* building){
-    std::string choice;
+    int choice;
     if (building->getLevel() != 3){
         if (building->getType() == "farm" ){
             std::cout << "*********** Upgrade requirements ***********\n"
                          "- iron: " << (building->getLevel()) * 35 << "x stone: "
                       << (building->getLevel()) * 45 << "x wood: " << (building->getLevel()) * 35 << "x\n";
-            std::cout << "(1) upgrade\t(2) cancel\n";
-            std::cout << ">";
-            std::getline(std::cin, choice);
-            if (choice == "2") {
+            choice = Input::selectUpgradeOrCancel();
+            if (choice == 2) {
                 std::cout << "*********** Upgrade cancelled ***********\n\n";
             }
             else if (m_iron >= ((building->getLevel()) * 35) and m_stone >= ((building->getLevel()) * 45)
-            and m_wood >= ((building->getLevel()) * 35) and choice == "1"){
+            and m_wood >= ((building->getLevel()) * 35) and choice == 1){
                 m_iron -= ((building->getLevel()) * 35);
                 m_stone -= ((building->getLevel()) * 45);
                 m_wood -= ((building->getLevel()) * 35);
@@ -115,10 +112,8 @@ void Village::upgrade(Building* building){
             std::cout << "*********** Upgrade requirements ***********\n"
                          "- iron: " << (building->getLevel()) * 15 << "x stone: "
                          << (building->getLevel()) * 40 << "x wood: " << (building->getLevel()) * 50 << "x\n";
-            std::cout << "(1) upgrade\t(2) cancel\n";
-            std::cout << ">";
-            std::getline(std::cin, choice);
-            if (choice == "2") {
+            choice = Input::selectUpgradeOrCancel();
+            if (choice == 2) {
                 std::cout << "*********** Upgrade cancelled ***********\n\n";
             }
             else if (m_iron >= ((building->getLevel()) * 15) and m_stone >= ((building->getLevel()) * 40)
@@ -137,10 +132,8 @@ void Village::upgrade(Building* building){
             std::cout << "*********** Upgrade requirements ***********\n"
                          "- iron: " << (building->getLevel()) * 25 << "x stone: "
                          << (building->getLevel()) * 50 << "x wood: " << (building->getLevel()) * 25 << "x ***\n";
-            std::cout << "(1) upgrade\t(2) cancel\n";
-            std::cout << ">";
-            std::getline(std::cin, choice);
-            if (choice == "2") {
+            choice = Input::selectUpgradeOrCancel();
+            if (choice == 2) {
                 std::cout << "*********** Upgrade cancelled ***********\n\n";
             }
             else if (m_iron >= ((building->getLevel()) * 25) and m_stone >= ((building->getLevel()) * 50)
@@ -157,10 +150,8 @@ void Village::upgrade(Building* building){
         if (building->getType() == "house"){
             std::cout << "*** UPGRADE REQUIREMENTS - iron: " << (building->getLevel()) * 25 << "x stone: "
                       << (building->getLevel()) * 45 << "x wood: " << (building->getLevel()) * 35 << "x ***\n";
-            std::cout << "(1) upgrade\t(2) cancel\n";
-            std::cout << ">";
-            std::getline(std::cin, choice);
-            if (choice == "2") {
+            choice = Input::selectUpgradeOrCancel();
+            if (choice == 2) {
                 std::cout << "*** Upgrade cancelled ***\n";
             }
             else if (m_iron >= ((building->getLevel()) * 25) and m_stone >= ((building->getLevel()) * 45)
