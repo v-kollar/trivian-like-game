@@ -53,7 +53,6 @@ void Village::checkTile() {
         std::string typeName;
         Village::printResources();
         for (int i = 0; i < types.size(); ++i) {
-
             std::array<int, 3> temp{};
             temp = ResourceTable::getCostAndMaterial(types.at(i));
             std::cout << "(" << i + 1 << ") " << types.at(i) << " - requirements: " << temp.at(0)
@@ -176,7 +175,7 @@ void Village::addBuilding(const std::string& type, int locationRow, int location
     temp = ResourceTable::getCostAndMaterial(type);
     if (m_wood >= temp.at(0) and m_stone >= temp.at(1)
     and m_iron >= temp.at(2) and m_availableSpace > 0){
-        m_availableSpace -= 1;
+        --m_availableSpace;
         m_wood -= temp.at(0);
         m_stone -= temp.at(1);
         m_iron -= temp.at(2);

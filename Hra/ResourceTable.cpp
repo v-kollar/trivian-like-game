@@ -10,27 +10,19 @@ ResourceTable::ResourceTable() = default;
 std::array<int, 3> ResourceTable::getCostAndMaterial(const std::string& type) {
     std::array<int, 3> temp{};
     if (type == "house") {
-        temp.at(0) = 35;
-        temp.at(1) = 25;
-        temp.at(2) = 30;
+        temp.at(0) = 35; temp.at(1) = 25; temp.at(2) = 30;
         return temp;
 
     } else if (type == "quarry") {
-        temp.at(0) = 50;
-        temp.at(1) = 40;
-        temp.at(2) = 15;
+        temp.at(0) = 50; temp.at(1) = 40; temp.at(2) = 15;
         return temp;
 
     } else if (type == "lumberjackhouse") {
-        temp.at(0) = 20;
-        temp.at(1) = 50;
-        temp.at(2) = 25;
+        temp.at(0) = 20; temp.at(1) = 50; temp.at(2) = 25;
         return temp;
 
     } else if (type == "farm") {
-        temp.at(0) = 35;
-        temp.at(1) = 45;
-        temp.at(2) = 35;
+        temp.at(0) = 35; temp.at(1) = 45; temp.at(2) = 35;
         return temp;
 
     } else {
