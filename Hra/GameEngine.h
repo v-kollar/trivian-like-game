@@ -5,10 +5,9 @@
 
 class GameEngine {
     Village* m_village;
-
-public:
     GameEngine();
-    static GameEngine* m_engine;
+public:
+    static GameEngine* s_engine;
     static GameEngine* getInstance();
     static void printIntro();
     static void printOutro();

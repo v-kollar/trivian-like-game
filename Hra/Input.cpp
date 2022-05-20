@@ -17,7 +17,7 @@ int Input::selectChoice() {
         return std::stoi(temp);
     } else {
         err = true;
-        std::cerr << "Wrong input. Try again.\n";
+        std::cout << "Wrong input. Try again.\n";
     }
 
     while (err) {
@@ -27,7 +27,7 @@ int Input::selectChoice() {
             err = false;
             return std::stoi(temp);
         } else {
-            std::cerr << "Wrong input. Try again.\n";
+            std::cout << "Wrong input. Try again.\n";
         }
     }
     return 0;
@@ -100,7 +100,7 @@ int Input::selectLocation(int difficulty) {
     if (choice >= 0 and choice < 18/(difficulty+1)+1) {
         return choice;
     } else {
-        std::cerr << " Oops! Selected number is not on the map! Try again\n";
+        std::cout << " Oops! Selected number is not on the map! Try again\n";
         err = true;
     }
 
@@ -110,7 +110,7 @@ int Input::selectLocation(int difficulty) {
             err = false;
             return choice;
         } else {
-            std::cerr << " Oops! Selected number is not on the map! Try again\n";
+            std::cout << " Oops! Selected number is not on the map! Try again\n";
         }
     }
     return 0;

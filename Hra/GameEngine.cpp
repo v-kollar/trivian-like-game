@@ -3,7 +3,7 @@
 #include "Village.h"
 #include "Input.h"
 
-GameEngine* GameEngine::m_engine = nullptr;
+GameEngine* GameEngine::s_engine = nullptr;
 
 GameEngine::GameEngine() {
     GameEngine::printIntro();
@@ -15,20 +15,19 @@ GameEngine::GameEngine() {
 }
 
 GameEngine* GameEngine::getInstance() {
-    if (m_engine == nullptr) {
-        m_engine = new GameEngine();
+    if (s_engine == nullptr) {
+        s_engine = new GameEngine();
     }
-    return m_engine;
+    return s_engine;
 }
 
 void GameEngine::printIntro() {
     std::cout << "\nWelcome player! This game is being made as school project\n"
                  "for course Basics of Object Design. Your goal is to build\n"
-                 "and upgrade as many buildings as possible without lossing\n"
+                 "and upgrade as many buildings as possible without losing\n"
                  "all your resources.\n"
                  "-------------------------------------------------------------\n"
-                 "Map size is determined by the selected difficulty.\n"; // sizes of each difficulties
-
+                 "Map size is determined by the selected difficulty.\n";
 }
 
 
@@ -49,7 +48,6 @@ void GameEngine::play() {
         }
         m_village->addNewResources();
         m_village->feedVillagers();
-
 
     }
     GameEngine::~GameEngine();

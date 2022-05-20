@@ -6,7 +6,6 @@
 #include <array>
 #include <cassert>
 #include "Village.h"
-#include "GameEngine.h"
 #include "Input.h"
 
 Village::Village(int difficulty, int minVillagers, int numOfVillagers,
@@ -166,7 +165,7 @@ void Village::upgrade(Building* building){
                 std::cout << "\nDO NOT have enough resources for the upgrade!\n";
             }
         }
-    } else{
+    } else {
         std::cout << "*** This building is already at max level! ***\n";
     }
 
@@ -175,9 +174,9 @@ void Village::upgrade(Building* building){
 void Village::addBuilding(const std::string& type, int locationRow, int locationCol) {
     std::array<int,3> temp{};
     temp = ResourceTable::getCostAndMaterial(type);
-    if (m_wood>=temp.at(0) and m_stone>=temp.at(1)
+    if (m_wood >= temp.at(0) and m_stone >= temp.at(1)
     and m_iron >= temp.at(2) and m_availableSpace > 0){
-        m_availableSpace -=1;
+        m_availableSpace -= 1;
         m_wood -= temp.at(0);
         m_stone -= temp.at(1);
         m_iron -= temp.at(2);

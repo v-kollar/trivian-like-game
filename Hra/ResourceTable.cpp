@@ -5,9 +5,7 @@
 #include <iostream>
 #include "ResourceTable.h"
 
-ResourceTable::ResourceTable() {
-    //instance nebudou existovat
-}
+ResourceTable::ResourceTable() = default;
 
 std::array<int, 3> ResourceTable::getCostAndMaterial(const std::string& type) {
     std::array<int, 3> temp{};
@@ -36,7 +34,7 @@ std::array<int, 3> ResourceTable::getCostAndMaterial(const std::string& type) {
         return temp;
 
     } else {
-        std::cerr << "Error 406: Cannot build other than pre-defined building types.\n";
+        std::cout << "Error 406: Cannot build other than pre-defined building types.\n";
         return {};
     }
 }
@@ -55,7 +53,7 @@ int ResourceTable::getProducedQty(Building *building) {
         return building->getLevel() * 7;
 
     } else {
-        std::cerr << "Error 406: Operation rejected. Please, try again.\n";
+        std::cout << "Error 406: Operation rejected. Please, try again.\n";
         return -1;
     }
 }

@@ -2,11 +2,11 @@
 
 bool Map::isNonZero(unsigned int width, unsigned int height) {
     if (width == 0) {
-        std::cerr << "Map::isNonZero: width must not be zero!\n";
+        std::cout << "Map::isNonZero: width must not be zero!\n";
         return false;
     }
     if (height == 0) {
-        std::cerr << "Map::isNonZero: height must not be zero!\n";
+        std::cout << "Map::isNonZero: height must not be zero!\n";
         return false;
     }
     return true;
@@ -14,12 +14,12 @@ bool Map::isNonZero(unsigned int width, unsigned int height) {
 
 bool Map::isOnMap(unsigned int row, unsigned int col) {
     if (row >= m_map.size()) {
-        std::cerr << "Map::isOnMap: entered a row value that is too large, "
+        std::cout << "Map::isOnMap: entered a row value that is too large, "
                  << "maximum is " << m_map.size() - 1 << "\n\n";
         return false;
     }
     if (col >= m_map.size()) {
-        std::cerr << "Map::isOnMap: entered a column value that is too large, "
+        std::cout << "Map::isOnMap: entered a column value that is too large, "
                   << "maximum is " << m_map.size() - 1 << "\n\n";
         return false;
     }
