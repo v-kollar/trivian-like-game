@@ -10,7 +10,6 @@ public:
     static GameEngine* s_engine;
     static GameEngine* getInstance();
     static void printIntro();
-    static void printOutro();
     void play();
     ~GameEngine();
 };

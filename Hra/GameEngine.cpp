@@ -8,9 +8,9 @@ GameEngine* GameEngine::s_engine = nullptr;
 GameEngine::GameEngine() {
     GameEngine::printIntro();
     int chosenDifficulty = Input::selectDifficulty();
-    m_village = new Village(chosenDifficulty, 1, (chosenDifficulty * 5 + 2),
-                             300 / chosenDifficulty, 300 / chosenDifficulty,
-                             300 / chosenDifficulty, 150 / chosenDifficulty);
+    m_village = new Village(chosenDifficulty, 1, (chosenDifficulty * 5),
+                             200 / chosenDifficulty, 250 / chosenDifficulty,
+                             200 / chosenDifficulty, 100 / chosenDifficulty);
     GameEngine::play();
 }
 
@@ -27,7 +27,14 @@ void GameEngine::printIntro() {
                  "and upgrade as many buildings as possible without losing\n"
                  "all your resources.\n"
                  "-------------------------------------------------------------\n"
-                 "Map size is determined by the selected difficulty.\n";
+                 "Here is a quick explanation of the game: \n"
+                 "You can choose from 3 difficulty levels, each will determine size of the map, "
+                 "how much villagers you will need per round and score multiplier\n"
+                 "You can upgrade buildings up to 3 times.\n"
+                 "Wood, stone and iron are resources used to build structures, weed is used for feeding villagers.\n"
+                 "Each round the number of minimum villagers is raised so you need to build appropriate building to meet the quota.\n"
+                 "Each building produces specific resources: house - villagers, quarry - stone + iron, lumberjack - wood, farm - weed.\n"
+                 "Map size is determined by the selected difficulty.\n" << std::endl;
 }
 
 
@@ -55,11 +62,6 @@ void GameEngine::play() {
 
 
 GameEngine::~GameEngine() {
+    std::cout << "Your score is:" << m_village->getStats() << "\nBetter luck next time";
     delete m_village;
-    GameEngine::printOutro();
-}
-
-
-void GameEngine::printOutro() {
-    std::cout << "Some epic outro about not giving up and keep playing...\n";
 }
