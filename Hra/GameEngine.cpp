@@ -27,14 +27,16 @@ void GameEngine::printIntro() {
                  "and upgrade as many buildings as possible without losing\n"
                  "all your resources.\n"
                  "-------------------------------------------------------------\n"
-                 "Here is a quick explanation of the game: \n"
-                 "You can choose from 3 difficulty levels, each will determine size of the map, "
-                 "how much villagers you will need per round and score multiplier\n"
-                 "You can upgrade buildings up to 3 times.\n"
-                 "Wood, stone and iron are resources used to build structures, weed is used for feeding villagers.\n"
-                 "Each round the number of minimum villagers is raised so you need to build appropriate building to meet the quota.\n"
-                 "Each building produces specific resources: house - villagers, quarry - stone + iron, lumberjack - wood, farm - weed.\n"
-                 "Map size is determined by the selected difficulty.\n" << std::endl;
+                 "Here is a brief introduction to the game: \n"
+                 "The player can choose from three difficulty levels, which will\n"
+                 "determine the size of the playing area, how many villagers\n"
+                 "will be needed per round and the score multiplier.\n"
+                 "It is possible to upgrade each building a maximum of three times.\n"
+                 "Wood, stone and iron are used to building, and weed is used to feed\n"
+                 "the villagers. Each round increases the minimum number of villagers\n"
+                 "so you need to think about, which buildings to build.\n"
+                 "Each type of building produces unique recourses: house - villagers,\n"
+                 "quarry - stone & iron, lumberjackhouse - wood and farm - weed\n\n";
 }
 
 
@@ -62,6 +64,6 @@ void GameEngine::play() {
 
 
 GameEngine::~GameEngine() {
-    std::cout << "Your score is:" << m_village->getStats() << "\nBetter luck next time";
+    std::cout << "\nYour score is: " << m_village->getStats() << "\nBetter luck next time!\n";
     delete m_village;
 }

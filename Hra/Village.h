@@ -34,7 +34,7 @@ public:
     void feedVillagers(); //na konci kola nakrmí stávající i nové vesničany, pokud není dostatek jídla zůstane pouze část stávajících
     void printMap(); //vykreslí na obrazovku mapu
     void setMinVillagers();
-    int getStats();
+    int getStats() const;
 };
 
 
