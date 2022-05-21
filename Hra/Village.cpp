@@ -200,18 +200,27 @@ void Village::addBuilding(const std::string& type, int locationRow, int location
 }
 
 void Village::addNewResources() {
+    int tempStone = 0;
+    int tempWheat = 0;
+    int tempIron = 0;
+    int tempWood = 0;
     for (int i = 0; i < m_buildings.size(); ++i) {
         if (m_buildings.at(i)->getType() == "farm") {
-            m_wheat += ResourceTable::getProducedQty(m_buildings.at(i));
+            tempWheat += ResourceTable::getProducedQty(m_buildings.at(i));
         }
         if (m_buildings.at(i)->getType() == "quarry") {
-            m_stone += ResourceTable::getProducedQty(m_buildings.at(i));
-            m_iron += ResourceTable::getProducedQty(m_buildings.at(i));
+            tempStone += ResourceTable::getProducedQty(m_buildings.at(i));
+            tempIron += ResourceTable::getProducedQty(m_buildings.at(i));
         }
         if (m_buildings.at(i)->getType() == "lumberjackhouse") {
-            m_wood += ResourceTable::getProducedQty(m_buildings.at(i));
+            tempWood += ResourceTable::getProducedQty(m_buildings.at(i));
         }
     }
+    m_wood += tempWood;
+    m_iron += tempIron;
+    m_wheat += tempWheat;
+    m_stone += tempStone;
+    std::cout << "*********** Gained resources  ***********\n" << "wood: " << tempWood << "x, stone: " << tempStone << "x, iron: " << tempIron << "x, wheat: " << tempWheat << "x" << "\n****************************************" << std::endl;
 }
 
 void Village::printResources() const {
@@ -244,7 +253,7 @@ void Village::printMap() {
 }
 
 void Village::setMinVillagers() {
-    m_minVillagers += m_difficulty * 2;
+    m_minVillagers += m_difficulty;
 }
 
 int Village::getStats() const {

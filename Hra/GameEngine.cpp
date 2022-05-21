@@ -32,11 +32,11 @@ void GameEngine::printIntro() {
                  "determine the size of the playing area, how many villagers\n"
                  "will be needed per round and the score multiplier.\n"
                  "It is possible to upgrade each building a maximum of three times.\n"
-                 "Wood, stone and iron are used to building, and weed is used to feed\n"
+                 "Wood, stone and iron are used to building, and wheat is used to feed\n"
                  "the villagers. Each round increases the minimum number of villagers\n"
                  "so you need to think about, which buildings to build.\n"
                  "Each type of building produces unique recourses: house - villagers,\n"
-                 "quarry - stone & iron, lumberjackhouse - wood and farm - weed\n\n";
+                 "quarry - stone & iron, lumberjackhouse - wood and farm - wheat\n\n";
 }
 
 
