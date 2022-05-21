@@ -246,3 +246,7 @@ void Village::printMap() {
 void Village::setMinVillagers() {
     m_minVillagers += m_difficulty * 2;
 }
+
+int Village::getStats() {
+    return (1000 / m_availableSpace) * m_minVillagers * m_difficulty;
+}
