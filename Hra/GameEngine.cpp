@@ -64,6 +64,6 @@ void GameEngine::play() {
 
 
 GameEngine::~GameEngine() {
-    std::cout << "\nYour score is: " << m_village->getStats() << "\nBetter luck next time!\n";
+    std::cout << "\n*********** GAME OVER *********** \nYour score is: " << m_village->getStats() << "\nBetter luck next time!\n";
     delete m_village;
 }
