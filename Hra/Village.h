@@ -35,6 +35,7 @@ public:
     void printMap(); //vykreslí na obrazovku mapu
     void setMinVillagers();
     int getStats() const;
+    ~Village();
 };
 
 

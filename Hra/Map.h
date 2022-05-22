@@ -18,6 +18,7 @@ public:
     Map(unsigned int width, unsigned int height);
     void setValue(unsigned int row, unsigned int col, Tile *value);
     void show();
+    ~Map();
 };
 
 #endif //HRA_MAP_H

@@ -5,11 +5,11 @@
 
 class GameEngine {
     Village* m_village;
+    static GameEngine* s_engine;
     GameEngine();
 public:
-    static GameEngine* s_engine;
     static GameEngine* getInstance();
-    static void printIntro();
+    void printIntro();
     void play();
     ~GameEngine();
 };

@@ -53,3 +53,7 @@ void Map::show() {
         std::cout << "\n";
     }
 }
+
+Map::~Map() {
+
+}

@@ -259,3 +259,10 @@ void Village::setMinVillagers() {
 int Village::getStats() const {
     return (1000 / m_availableSpace) * m_minVillagers * m_difficulty;
 }
+
+Village::~Village() {
+    delete m_map;
+    for (int i = 0; i < m_buildings.size(); ++i) {
+        delete m_buildings.at(i);
+    }
+}
