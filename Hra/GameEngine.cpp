@@ -22,10 +22,8 @@ GameEngine* GameEngine::getInstance() {
 }
 
 void GameEngine::printIntro() {
-    std::cout << "\nWelcome player! This game is being made as school project\n"
-                 "for course Basics of Object Design. Your goal is to build\n"
-                 "and upgrade as many buildings as possible without losing\n"
-                 "all your resources.\n"
+    std::cout << "\nWelcome player! This game was made as school project\n"
+                 "for course Basics of Object Oriented Design.\n"
                  "-------------------------------------------------------------\n"
                  "Here is a brief introduction to the game: \n"
                  "The player can choose from three difficulty levels, which will\n"
