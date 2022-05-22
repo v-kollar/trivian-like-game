@@ -8,7 +8,6 @@ class Tile {
 public:
     Tile(std::string appearance);
     std::string getAppearance();
-    void setAppearance(std::string appearance);
 };
 
 #endif //HRA_TILE_H

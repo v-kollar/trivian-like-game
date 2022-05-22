@@ -55,5 +55,11 @@ void Map::show() {
 }
 
 Map::~Map() {
-
+    for (int i = 0; i < m_map.size(); ++i) {
+        for (int j = 0; j < m_map.size(); ++j) {
+            delete m_map.at(i).at(j);
+        }
+        m_map.at(i).clear();
+    }
+    m_map.clear();
 }
