@@ -1,0 +1,2 @@
+# Zadání projektu #
+Vytvořte následující textovou verzi hry typu Travian, SimCity atp. Tedy budovatelskou strategii, kde budete mít grid představující svět. V tomto světě budete stavět různé typy budov, které budou generovat zdroje použitelné pro další budování. Můžete do hry zapojit i třeba prvek boje, sabotáže atp.
