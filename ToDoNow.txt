@@ -1,4 +1,0 @@
-- destruktor Village
-- osetreni vsech vstupnich hodnot
-- doresit okamzik, kdy zacnou nebude dostatek jidla pro uziveni obyvatel (10 obyvatel, 10 obili)
-- nezvysuje se pocet zeleza
